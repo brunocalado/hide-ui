@@ -89,6 +89,8 @@ export class HideUIPlayerConfigurationForm extends HandlebarsApplicationMixin(Ap
             compendiumPacks: !(ov && (ws.hideSideBar.complete || ws.hideSideBar.compendiumPacks)),
             gameSettings: !(ov && (ws.hideSideBar.complete || ws.hideSideBar.gameSettings)),
             placeables: !(ov && (ws.hideSideBar.complete || ws.hideSideBar.placeables)),
+            // gated on the module being active so it never contributes to showSidebarSection when absent
+            diceSoNice: (game.modules.get("dice-so-nice")?.active ?? false) && !(ov && (ws.hideSideBar.complete || ws.hideSideBar.diceSoNice)),
          },
          hidePlayers: !(ov && ws.hidePlayers),
          hideHotbar: !(ov && ws.hideHotbar),

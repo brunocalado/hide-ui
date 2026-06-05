@@ -124,6 +124,13 @@
                <input type="checkbox" id="hideSideBar-gameSettings" name="hideSideBar.gameSettings"
                   {{checked settings.hideSideBar.gameSettings}} />
             </div>
+            {{#if renderDiceSoNiceOption}}
+            <div class="hide-ui-option">
+               <label for="hideSideBar-diceSoNice"><i class="fa-solid fa-dice-d20"></i> Dice So Nice!</label>
+               <input type="checkbox" id="hideSideBar-diceSoNice" name="hideSideBar.diceSoNice"
+                  {{checked settings.hideSideBar.diceSoNice}} />
+            </div>
+            {{/if}}
          </div>
       </section>
 

@@ -6,7 +6,7 @@ Hooks.on("init", () => {
    registerSettings();
 });
 
-Hooks.on("ready", () => {
+Hooks.on("ready", async () => {
    const hiddenUsers = game.settings.get(MODULE_ID, HIDDEN_USERS_KEY);
 
    // Full GMs are never affected. All other users default to hidden if not explicitly exempted.
@@ -77,8 +77,16 @@ Hooks.on("ready", () => {
       if (playerConfig.hideSideBar?.placeables || (isPlayerUiOverridden && settings.hideSideBar?.placeables))
          hideElement("placeables");
 
+      // dice-so-nice hides its tab via its own setting rather than CSS
+      if (game.modules.get("dice-so-nice")?.active) {
+         if (playerConfig.hideSideBar?.diceSoNice || (isPlayerUiOverridden && settings.hideSideBar?.diceSoNice))
+            await game.settings.set("dice-so-nice", "hideSidebarTab", true);
+      }
+
       const sidebarSettings = {};
       for (const [key, value] of Object.entries(settings.hideSideBar ?? {})) {
+         // diceSoNice is handled via the dice-so-nice API, not CSS — exclude it from layout logic
+         if (key === "diceSoNice") continue;
          sidebarSettings[key] = (isPlayerUiOverridden && value) || playerConfig.hideSideBar?.[key];
       }
 
