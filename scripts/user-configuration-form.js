@@ -1,4 +1,4 @@
-import { MODULE_ID } from "./constants.js";
+import { MODULE_ID, HIDDEN_USERS_KEY } from "./constants.js";
 
 const { HandlebarsApplicationMixin, ApplicationV2 } = foundry.applications.api;
 
@@ -30,7 +30,7 @@ export class HideUIUserConfigurationForm extends HandlebarsApplicationMixin(Appl
     * @returns {Promise<Object>}
     */
    async _prepareContext(options) {
-      const hiddenUsers = game.settings.get(MODULE_ID, "hiddenUsers");
+      const hiddenUsers = game.settings.get(MODULE_ID, HIDDEN_USERS_KEY);
       const roleLabels = ["None", "Player", "Trusted", "Assistant"];
 
       const users = game.users
@@ -75,6 +75,6 @@ export class HideUIUserConfigurationForm extends HandlebarsApplicationMixin(Appl
     */
    static async _onSubmit(event, _form, formData) {
       const hiddenUsers = formData.object.users ?? {};
-      await game.settings.set(MODULE_ID, "hiddenUsers", hiddenUsers);
+      await game.settings.set(MODULE_ID, HIDDEN_USERS_KEY, hiddenUsers);
    }
 }

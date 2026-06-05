@@ -1,5 +1,4 @@
-import { MODULE_ID } from "./constants.js";
-import { truthySettings, falseySettings } from "./settings.js";
+import { MODULE_ID, SETTINGS_KEY, truthySettings, falseySettings } from "./constants.js";
 
 const { HandlebarsApplicationMixin, ApplicationV2 } = foundry.applications.api;
 
@@ -37,7 +36,7 @@ export class HideUISettingsForm extends HandlebarsApplicationMixin(ApplicationV2
     * @returns {Promise<Object>}
     */
    async _prepareContext(options) {
-      const settings = this._formState ?? game.settings.get(MODULE_ID, "settings");
+      const settings = this._formState ?? game.settings.get(MODULE_ID, SETTINGS_KEY);
       return {
          settings,
          renderTokenActionHudOption: game.modules.get("token-action-hud")?.active ?? false,
@@ -87,11 +86,11 @@ export class HideUISettingsForm extends HandlebarsApplicationMixin(ApplicationV2
     * @returns {Promise<void>}
     */
    static async _onSubmit(event, _form, formData) {
-      const current = game.settings.get(MODULE_ID, "settings");
+      const current = game.settings.get(MODULE_ID, SETTINGS_KEY);
       const data = foundry.utils.mergeObject(current, formData.object, {
          insertKeys: true,
          insertValues: true,
       });
-      await game.settings.set(MODULE_ID, "settings", data);
+      await game.settings.set(MODULE_ID, SETTINGS_KEY, data);
    }
 }

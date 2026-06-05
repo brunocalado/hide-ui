@@ -1,18 +1,18 @@
-import { MODULE_ID, PLAYER_CONFIG_STORAGE_KEY } from "./constants.js";
-import { registerSettings, falseySettings } from "./settings.js";
-import { isFullGM } from "./isGM.js";
+import { MODULE_ID, PLAYER_CONFIG_STORAGE_KEY, falseySettings, SETTINGS_KEY, HIDDEN_USERS_KEY, PLAYER_CONFIG_FLAG_KEY } from "./constants.js";
+import { registerSettings } from "./settings.js";
+import { isFullGM } from "./helpers.js";
 
 Hooks.on("init", () => {
    registerSettings();
 });
 
 Hooks.on("ready", () => {
-   const hiddenUsers = game.settings.get(MODULE_ID, "hiddenUsers");
+   const hiddenUsers = game.settings.get(MODULE_ID, HIDDEN_USERS_KEY);
 
    // Full GMs are never affected. All other users default to hidden if not explicitly exempted.
    const isPlayerUiOverridden = !isFullGM() && (hiddenUsers[game.user.id] !== false);
 
-   const settings = game.settings.get(MODULE_ID, "settings");
+   const settings = game.settings.get(MODULE_ID, SETTINGS_KEY);
 
    // localStorage is checked first: it survives the page reload that setFlag triggers in V14,
    // so freshly saved settings are available immediately after the forced reload.
@@ -22,7 +22,7 @@ Hooks.on("ready", () => {
       const stored = localStorage.getItem(PLAYER_CONFIG_STORAGE_KEY);
       if (stored) playerConfig = JSON.parse(stored);
    } catch {}
-   playerConfig ??= game.user.getFlag(MODULE_ID, "playerConfig") ?? foundry.utils.deepClone(falseySettings);
+   playerConfig ??= game.user.getFlag(MODULE_ID, PLAYER_CONFIG_FLAG_KEY) ?? foundry.utils.deepClone(falseySettings);
 
    if (
       playerConfig.hideNavigation?.complete ||

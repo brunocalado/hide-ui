@@ -1,4 +1,70 @@
 export const MODULE_ID = "hide-ui";
 
-/** localStorage key for the player's personal UI config — survives page reloads. */
-export const PLAYER_CONFIG_STORAGE_KEY = `${MODULE_ID}.playerConfig`;
+export const SETTINGS_KEY = "settings";
+export const HIDDEN_USERS_KEY = "hiddenUsers";
+export const PLAYER_CONFIG_FLAG_KEY = "playerConfig";
+export const PLAYER_CONFIG_STORAGE_KEY = `${MODULE_ID}.${PLAYER_CONFIG_FLAG_KEY}`;
+
+export const truthySettings = {
+   hideNavigation: {
+      complete: true,
+      navToggle: true,
+      sceneList: true,
+      bossBar: true,
+   },
+   hideControls: true,
+   hideSideBar: {
+      complete: true,
+      chatLog: true,
+      chatInput: true,
+      combatTracker: true,
+      scenesDirectory: true,
+      actorsDirectory: true,
+      itemsDirectory: true,
+      journalEntries: true,
+      rollableTables: true,
+      cardStacks: true,
+      audioPlaylists: true,
+      compendiumPacks: true,
+      gameSettings: true,
+      macros: true,
+   },
+   hidePlayers: true,
+   hideHotbar: true,
+   hidePlayerConfig: true,
+   hideTokenHUD: true,
+   hideTokenActionHUD: true,
+   hideCustomHotbar: true,
+};
+
+export const falseySettings = {
+   hideNavigation: {
+      complete: false,
+      navToggle: false,
+      sceneList: false,
+      bossBar: false,
+   },
+   hideControls: false,
+   hideSideBar: {
+      complete: false,
+      chatLog: false,
+      chatInput: false,
+      combatTracker: false,
+      scenesDirectory: false,
+      actorsDirectory: false,
+      itemsDirectory: false,
+      journalEntries: false,
+      rollableTables: false,
+      cardStacks: false,
+      audioPlaylists: false,
+      compendiumPacks: false,
+      gameSettings: false,
+      macros: false,
+   },
+   hidePlayers: false,
+   hideHotbar: false,
+   hidePlayerConfig: false,
+   hideTokenHUD: false,
+   hideTokenActionHUD: false,
+   hideCustomHotbar: false,
+};

@@ -1,6 +1,5 @@
-import { MODULE_ID, PLAYER_CONFIG_STORAGE_KEY } from "./constants.js";
-import { truthySettings, falseySettings } from "./settings.js";
-import { isFullGM } from "./isGM.js";
+import { MODULE_ID, PLAYER_CONFIG_STORAGE_KEY, SETTINGS_KEY, HIDDEN_USERS_KEY, PLAYER_CONFIG_FLAG_KEY, truthySettings, falseySettings } from "./constants.js";
+import { isFullGM } from "./helpers.js";
 
 const { HandlebarsApplicationMixin, ApplicationV2 } = foundry.applications.api;
 
@@ -39,7 +38,7 @@ export class HideUIPlayerConfigurationForm extends HandlebarsApplicationMixin(Ap
     */
    _getPlayerUiOverridden() {
       if (isFullGM()) return false;
-      const hiddenUsers = game.settings.get(MODULE_ID, "hiddenUsers");
+      const hiddenUsers = game.settings.get(MODULE_ID, HIDDEN_USERS_KEY);
       return hiddenUsers[game.user.id] !== false;
    }
 
@@ -51,7 +50,7 @@ export class HideUIPlayerConfigurationForm extends HandlebarsApplicationMixin(Ap
     * @returns {Promise<Object>}
     */
    async _prepareContext(options) {
-      const ws = game.settings.get(MODULE_ID, "settings");
+      const ws = game.settings.get(MODULE_ID, SETTINGS_KEY);
 
       // Mirror the same read priority used in the ready hook: localStorage first,
       // then the server flag, so the form reflects the correct state even after a reload.
@@ -60,7 +59,7 @@ export class HideUIPlayerConfigurationForm extends HandlebarsApplicationMixin(Ap
          const stored = localStorage.getItem(PLAYER_CONFIG_STORAGE_KEY);
          if (stored) savedPlayerConfig = JSON.parse(stored);
       } catch {}
-      savedPlayerConfig ??= game.user.getFlag(MODULE_ID, "playerConfig");
+      savedPlayerConfig ??= game.user.getFlag(MODULE_ID, PLAYER_CONFIG_FLAG_KEY);
 
       const playerConfig = this._formState
          ?? savedPlayerConfig
@@ -171,7 +170,7 @@ export class HideUIPlayerConfigurationForm extends HandlebarsApplicationMixin(Ap
     * @returns {Promise<void>}
     */
    static async _onSubmit(event, _form, formData) {
-      const current = game.user.getFlag(MODULE_ID, "playerConfig")
+      const current = game.user.getFlag(MODULE_ID, PLAYER_CONFIG_FLAG_KEY)
          ?? foundry.utils.deepClone(falseySettings);
       const data = foundry.utils.mergeObject(current, formData.object, {
          insertKeys: true,
@@ -180,6 +179,6 @@ export class HideUIPlayerConfigurationForm extends HandlebarsApplicationMixin(Ap
       // Write to localStorage first: if setFlag triggers a page reload in V14,
       // the ready hook reads from localStorage and the settings are not lost.
       localStorage.setItem(PLAYER_CONFIG_STORAGE_KEY, JSON.stringify(data));
-      await game.user.setFlag(MODULE_ID, "playerConfig", data);
+      await game.user.setFlag(MODULE_ID, PLAYER_CONFIG_FLAG_KEY, data);
    }
 }
