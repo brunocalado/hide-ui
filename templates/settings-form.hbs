@@ -1,0 +1,187 @@
+<form class="hide-ui-form" autocomplete="off">
+   <div class="hide-ui-options">
+
+      {{!-- ── Navigation ─────────────────────────────────────────── --}}
+      <section class="hide-ui-section">
+         <h3 class="hide-ui-section-header">
+            <i class="fas fa-map"></i> Navigation
+         </h3>
+         <div class="hide-ui-option hide-ui-option--master">
+            <label for="hideNavigation-complete">Hide All Navigation</label>
+            <input type="checkbox" id="hideNavigation-complete" name="hideNavigation.complete"
+               {{checked settings.hideNavigation.complete}} />
+         </div>
+         <div class="hide-ui-suboptions">
+            <div class="hide-ui-option">
+               <label for="hideNavigation-navToggle">Navigation Toggle</label>
+               <input type="checkbox" id="hideNavigation-navToggle" name="hideNavigation.navToggle"
+                  {{checked settings.hideNavigation.navToggle}} />
+            </div>
+            <div class="hide-ui-option">
+               <label for="hideNavigation-sceneList">Scene List</label>
+               <input type="checkbox" id="hideNavigation-sceneList" name="hideNavigation.sceneList"
+                  {{checked settings.hideNavigation.sceneList}} />
+            </div>
+            {{#if renderBossBarOption}}
+            <div class="hide-ui-option">
+               <label for="hideNavigation-bossBar">Boss Bar</label>
+               <input type="checkbox" id="hideNavigation-bossBar" name="hideNavigation.bossBar"
+                  {{checked settings.hideNavigation.bossBar}} />
+            </div>
+            {{/if}}
+         </div>
+      </section>
+
+      {{!-- ── Controls ─────────────────────────────────────────────── --}}
+      <div class="hide-ui-option hide-ui-option--standalone">
+         <label for="hideControls">
+            <i class="fas fa-tools" style="margin-right:0.3rem;opacity:0.6"></i>
+            Hide Controls Panel
+         </label>
+         <input type="checkbox" id="hideControls" name="hideControls" {{checked settings.hideControls}} />
+      </div>
+
+      {{!-- ── Sidebar ───────────────────────────────────────────────── --}}
+      <section class="hide-ui-section">
+         <h3 class="hide-ui-section-header">
+            <i class="fas fa-columns"></i> Sidebar
+         </h3>
+         <div class="hide-ui-option hide-ui-option--master">
+            <label for="hideSideBar-complete">Hide Entire Sidebar</label>
+            <input type="checkbox" id="hideSideBar-complete" name="hideSideBar.complete"
+               {{checked settings.hideSideBar.complete}} />
+         </div>
+         <div class="hide-ui-suboptions">
+            <div class="hide-ui-option">
+               <label for="hideSideBar-chatLog">Chat Log</label>
+               <input type="checkbox" id="hideSideBar-chatLog" name="hideSideBar.chatLog"
+                  {{checked settings.hideSideBar.chatLog}} />
+            </div>
+            <div class="hide-ui-suboptions hide-ui-suboptions--deep">
+               <div class="hide-ui-option">
+                  <label for="hideSideBar-chatInput">Chat Input</label>
+                  <input type="checkbox" id="hideSideBar-chatInput" name="hideSideBar.chatInput"
+                     {{checked settings.hideSideBar.chatInput}} />
+               </div>
+            </div>
+            <div class="hide-ui-option">
+               <label for="hideSideBar-combatTracker">Combat Tracker</label>
+               <input type="checkbox" id="hideSideBar-combatTracker" name="hideSideBar.combatTracker"
+                  {{checked settings.hideSideBar.combatTracker}} />
+            </div>
+            <div class="hide-ui-option">
+               <label for="hideSideBar-scenesDirectory">Scenes Directory</label>
+               <input type="checkbox" id="hideSideBar-scenesDirectory" name="hideSideBar.scenesDirectory"
+                  {{checked settings.hideSideBar.scenesDirectory}} />
+            </div>
+            <div class="hide-ui-option">
+               <label for="hideSideBar-actorsDirectory">Actors Directory</label>
+               <input type="checkbox" id="hideSideBar-actorsDirectory" name="hideSideBar.actorsDirectory"
+                  {{checked settings.hideSideBar.actorsDirectory}} />
+            </div>
+            <div class="hide-ui-option">
+               <label for="hideSideBar-itemsDirectory">Items Directory</label>
+               <input type="checkbox" id="hideSideBar-itemsDirectory" name="hideSideBar.itemsDirectory"
+                  {{checked settings.hideSideBar.itemsDirectory}} />
+            </div>
+            <div class="hide-ui-option">
+               <label for="hideSideBar-journalEntries">Journal Entries</label>
+               <input type="checkbox" id="hideSideBar-journalEntries" name="hideSideBar.journalEntries"
+                  {{checked settings.hideSideBar.journalEntries}} />
+            </div>
+            <div class="hide-ui-option">
+               <label for="hideSideBar-rollableTables">Rollable Tables</label>
+               <input type="checkbox" id="hideSideBar-rollableTables" name="hideSideBar.rollableTables"
+                  {{checked settings.hideSideBar.rollableTables}} />
+            </div>
+            <div class="hide-ui-option">
+               <label for="hideSideBar-cardStacks">Card Stacks</label>
+               <input type="checkbox" id="hideSideBar-cardStacks" name="hideSideBar.cardStacks"
+                  {{checked settings.hideSideBar.cardStacks}} />
+            </div>
+            <div class="hide-ui-option">
+               <label for="hideSideBar-macros">Macros</label>
+               <input type="checkbox" id="hideSideBar-macros" name="hideSideBar.macros"
+                  {{checked settings.hideSideBar.macros}} />
+            </div>
+            <div class="hide-ui-option">
+               <label for="hideSideBar-audioPlaylists">Audio Playlists</label>
+               <input type="checkbox" id="hideSideBar-audioPlaylists" name="hideSideBar.audioPlaylists"
+                  {{checked settings.hideSideBar.audioPlaylists}} />
+            </div>
+            <div class="hide-ui-option">
+               <label for="hideSideBar-compendiumPacks">Compendium Packs</label>
+               <input type="checkbox" id="hideSideBar-compendiumPacks" name="hideSideBar.compendiumPacks"
+                  {{checked settings.hideSideBar.compendiumPacks}} />
+            </div>
+            <div class="hide-ui-option">
+               <label for="hideSideBar-gameSettings">Game Settings</label>
+               <input type="checkbox" id="hideSideBar-gameSettings" name="hideSideBar.gameSettings"
+                  {{checked settings.hideSideBar.gameSettings}} />
+            </div>
+         </div>
+      </section>
+
+      {{!-- ── Players & Interface ──────────────────────────────────── --}}
+      <section class="hide-ui-section">
+         <h3 class="hide-ui-section-header">
+            <i class="fas fa-users"></i> Players &amp; Interface
+         </h3>
+         <div class="hide-ui-option">
+            <label for="hidePlayers">Active Players List</label>
+            <input type="checkbox" id="hidePlayers" name="hidePlayers" {{checked settings.hidePlayers}} />
+         </div>
+         <div class="hide-ui-option">
+            <label for="hidePlayerConfig">Player Configuration Button</label>
+            <input type="checkbox" id="hidePlayerConfig" name="hidePlayerConfig"
+               {{checked settings.hidePlayerConfig}} />
+         </div>
+      </section>
+
+      {{!-- ── Hotbar ────────────────────────────────────────────────── --}}
+      <section class="hide-ui-section">
+         <h3 class="hide-ui-section-header">
+            <i class="fas fa-th"></i> Hotbar
+         </h3>
+         <div class="hide-ui-option">
+            <label for="hideHotbar">Macro Hotbar</label>
+            <input type="checkbox" id="hideHotbar" name="hideHotbar" {{checked settings.hideHotbar}} />
+         </div>
+         {{#if renderCustomHotbarOption}}
+         <div class="hide-ui-option">
+            <label for="hideCustomHotbar">Custom Hotbar</label>
+            <input type="checkbox" id="hideCustomHotbar" name="hideCustomHotbar"
+               {{checked settings.hideCustomHotbar}} />
+         </div>
+         {{/if}}
+      </section>
+
+      {{!-- ── HUD ──────────────────────────────────────────────────── --}}
+      <section class="hide-ui-section">
+         <h3 class="hide-ui-section-header">
+            <i class="fas fa-dot-circle"></i> HUD
+         </h3>
+         <div class="hide-ui-option">
+            <label for="hideTokenHUD">Token HUD</label>
+            <input type="checkbox" id="hideTokenHUD" name="hideTokenHUD" {{checked settings.hideTokenHUD}} />
+         </div>
+         {{#if renderTokenActionHudOption}}
+         <div class="hide-ui-option">
+            <label for="hideTokenActionHUD">Token Action HUD</label>
+            <input type="checkbox" id="hideTokenActionHUD" name="hideTokenActionHUD"
+               {{checked settings.hideTokenActionHUD}} />
+         </div>
+         {{/if}}
+      </section>
+
+   </div>
+
+   <footer class="hide-ui-form-footer">
+      <button type="button" data-action="toggleAll">
+         <i class="fas fa-check-double"></i> Toggle All
+      </button>
+      <button type="submit">
+         <i class="fas fa-save"></i> Save Changes
+      </button>
+   </footer>
+</form>

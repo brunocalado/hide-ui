@@ -1,0 +1,126 @@
+/* ── Body-level hide classes ──────────────────────────────────────────────── */
+/* These are added to <body> at runtime by hide-ui.js to toggle Foundry UI elements. */
+
+.hide-ui-navigation #scene-navigation-expand,
+.hide-ui-navigation #scene-navigation,
+.hide-ui-navigation .monks-scene-navigation {
+   display: none !important;
+}
+
+.hide-ui-navToggle #scene-navigation-expand {
+   display: none !important;
+}
+
+.hide-ui-sceneList #scene-navigation,
+.hide-ui-sceneList .monks-scene-navigation {
+   display: none !important;
+}
+
+.hide-ui-bossBar .bossBar {
+   display: none !important;
+}
+
+.hide-ui-controls #scene-controls {
+   display: none !important;
+}
+
+.hide-ui-controls #players {
+   position: absolute;
+   bottom: 1rem;
+}
+
+.hide-ui-sidebar #sidebar,
+.hide-ui-sidebar #chat-message {
+   display: none !important;
+}
+
+.hide-ui-chatLog #sidebar-tabs li:has(button[data-tab="chat"]) {
+   display: none !important;
+}
+
+.hide-ui-chatInput #sidebar-content #chat #chat-form,
+.hide-ui-chatInput #chat-message,
+.hide-ui-chatInput #roll-privacy {
+   display: none !important;
+}
+
+.hide-ui-combatTracker #sidebar-tabs li:has(button[data-tab="combat"]) {
+   display: none !important;
+}
+
+.hide-ui-scenesDirectory #sidebar-tabs li:has(button[data-tab="scenes"]) {
+   display: none !important;
+}
+
+.hide-ui-actorsDirectory #sidebar-tabs li:has(button[data-tab="actors"]) {
+   display: none !important;
+}
+
+.hide-ui-itemsDirectory #sidebar-tabs li:has(button[data-tab="items"]) {
+   display: none !important;
+}
+
+.hide-ui-journalEntries #sidebar-tabs li:has(button[data-tab="journal"]) {
+   display: none !important;
+}
+
+.hide-ui-rollableTables #sidebar-tabs li:has(button[data-tab="tables"]) {
+   display: none !important;
+}
+
+.hide-ui-cardStacks #sidebar-tabs li:has(button[data-tab="cards"]) {
+   display: none !important;
+}
+
+.hide-ui-macros #sidebar-tabs li:has(button[data-tab="macros"]) {
+   display: none !important;
+}
+
+.hide-ui-audioPlaylists #sidebar-tabs li:has(button[data-tab="playlists"]) {
+   display: none !important;
+}
+
+.hide-ui-compendiumPacks #sidebar-tabs li:has(button[data-tab="compendium"]) {
+   display: none !important;
+}
+
+.hide-ui-gameSettings #sidebar-tabs li:has(button[data-tab="settings"]) {
+   display: none !important;
+}
+
+.hide-ui-sidebarToggle #sidebar-tabs li:has(button[data-action="toggleState"]) {
+   display: none !important;
+}
+
+.hide-ui-players #players {
+   display: none !important;
+}
+
+.hide-ui-hotbar #hotbar {
+   display: none !important;
+}
+
+.hide-ui-player-config .user-config {
+   display: none !important;
+}
+
+.hide-ui-token-hud #token-hud {
+   display: none !important;
+}
+
+.hide-ui-token-action-hud #token-action-hud {
+   display: none !important;
+}
+
+.hide-ui-custom-hotbar #custom-hotbar,
+.hide-ui-custom-hotbar #hotbar {
+   display: none !important;
+}
+
+.hide-ui-dynamic-sized-sidebar #sidebar.collapsed {
+   height: auto !important;
+}
+
+.hide-ui-dynamic-sized-sidebar #sidebar-tabs {
+   justify-content: space-evenly;
+}

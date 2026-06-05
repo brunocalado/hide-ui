@@ -1,0 +1,29 @@
+<form class="hide-ui-form hide-ui-user-form" autocomplete="off">
+
+   <p class="hide-ui-user-form-hint">
+      Toggle which players receive the connecting players' UI configuration. Players not listed here will be hidden by default when they first connect.
+   </p>
+
+   <div class="hide-ui-user-list">
+      {{#each users}}
+      <div class="hide-ui-user-row">
+         <img class="hide-ui-user-avatar" src="{{avatar}}" alt="{{name}}" />
+         <div class="hide-ui-user-info">
+            <span class="hide-ui-user-name">{{name}}</span>
+            <span class="hide-ui-user-role">{{role}}</span>
+         </div>
+         <label class="hide-ui-user-toggle" title="Apply hide settings to this player">
+            <input type="checkbox" name="users.{{id}}" {{checked isHidden}} />
+            <span>Hide UI</span>
+         </label>
+      </div>
+      {{else}}
+      <p class="hide-ui-user-empty">No non-GM players found in this world.</p>
+      {{/each}}
+   </div>
+
+   <footer class="hide-ui-form-footer">
+      <button type="submit"><i class="fas fa-save"></i> Save Changes</button>
+   </footer>
+
+</form>

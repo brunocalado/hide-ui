@@ -1,0 +1,88 @@
+.hide-ui {
+   .hide-ui-user-form {
+      .hide-ui-user-form-hint {
+         font-size: var(--font-size-12);
+         color: var(--color-text-dark-secondary);
+         margin: 0 0 0.75rem;
+         padding: 0.4rem 0.6rem;
+         border: 1px solid var(--color-border-light-secondary);
+         border-radius: 4px;
+         background: var(--color-bg-option);
+         line-height: 1.5;
+      }
+
+      .hide-ui-user-list {
+         display: flex;
+         flex-direction: column;
+         gap: 0;
+         max-height: 55vh;
+         overflow-y: auto;
+      }
+
+      .hide-ui-user-row {
+         display: flex;
+         align-items: center;
+         gap: 0.75rem;
+         padding: 0.4rem 0.25rem;
+         border-bottom: 1px solid var(--color-border-light-tertiary);
+
+         &:last-child {
+            border-bottom: none;
+         }
+      }
+
+      .hide-ui-user-avatar {
+         width: 36px;
+         height: 36px;
+         border-radius: 50%;
+         object-fit: cover;
+         flex: 0 0 auto;
+         border: 1px solid var(--color-border-light-secondary);
+         background: var(--color-bg-option);
+      }
+
+      .hide-ui-user-info {
+         flex: 1 1 auto;
+         display: flex;
+         flex-direction: column;
+         gap: 0.1rem;
+         min-width: 0;
+      }
+
+      .hide-ui-user-name {
+         font-size: var(--font-size-14);
+         font-weight: 600;
+         color: var(--color-text-primary);
+         white-space: nowrap;
+         overflow: hidden;
+         text-overflow: ellipsis;
+      }
+
+      .hide-ui-user-role {
+         font-size: var(--font-size-11);
+         color: var(--color-text-dark-secondary);
+         text-transform: uppercase;
+         letter-spacing: 0.03em;
+      }
+
+      .hide-ui-user-toggle {
+         flex: 0 0 auto;
+         display: flex;
+         align-items: center;
+         gap: 0.35rem;
+         font-size: var(--font-size-12);
+         font-weight: 600;
+         color: var(--color-text-dark-secondary);
+         cursor: pointer;
+         white-space: nowrap;
+      }
+
+      .hide-ui-user-empty {
+         font-size: var(--font-size-13);
+         color: var(--color-text-dark-secondary);
+         font-style: italic;
+         text-align: center;
+         padding: 1rem 0;
+      }
+   }
+}

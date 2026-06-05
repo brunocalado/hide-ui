@@ -1,0 +1,35 @@
+{
+  "title": "Hide UI",
+  "id": "hide-ui",
+  "description": "Allows configuration of what Foundry UI should be displayed. Can be set on a per-user basis or the GM can override what UI connecting players see.",
+
+  "version": "0.0.1",
+
+  "compatibility": {
+    "minimum": "14",
+    "verified": "14"
+  },
+
+  "authors": [
+    {
+      "name": "Mestre Digital",
+      "url": "http://youtube.com/@mestredigital",
+      "flags": {}
+    }
+  ],
+
+  "esmodules": [
+    "scripts/hide-ui.js"
+  ],
+  "styles": [
+    "styles/base.css",
+    "styles/settings-form.css",
+    "styles/player-configuration-form.css",
+    "styles/user-configuration-form.css"
+  ],
+
+
+  "url": "https://github.com/brunocalado/hide-ui",
+  "manifest": "https://raw.githubusercontent.com/brunocalado/hide-ui/main/module.json",
+  "download": "https://codeload.github.com/brunocalado/hide-ui/zip/main"
+}
