@@ -74,6 +74,8 @@ Hooks.on("ready", () => {
          hideElement("compendiumPacks");
       if (playerConfig.hideSideBar?.gameSettings || (isPlayerUiOverridden && settings.hideSideBar?.gameSettings))
          hideElement("gameSettings");
+      if (playerConfig.hideSideBar?.placeables || (isPlayerUiOverridden && settings.hideSideBar?.placeables))
+         hideElement("placeables");
 
       const sidebarSettings = {};
       for (const [key, value] of Object.entries(settings.hideSideBar ?? {})) {
@@ -153,6 +155,7 @@ const setFocusToFirstDisplayedTab = (hideSideBarSettings) => {
          audioPlaylists: "playlists",
          compendiumPacks: "compendium",
          gameSettings: "settings",
+         placeables: "placeables",
       };
 
       for (const [key, tab] of Object.entries(tabMap)) {

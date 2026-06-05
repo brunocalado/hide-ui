@@ -88,6 +88,10 @@
    display: none !important;
 }
 
+.hide-ui-placeables #sidebar-tabs li:has(button[data-tab="placeables"]) {
+   display: none !important;
+}
+
 .hide-ui-sidebarToggle #sidebar-tabs li:has(button[data-action="toggleState"]) {
    display: none !important;
 }

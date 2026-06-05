@@ -144,6 +144,13 @@
                {{checked playerConfig.hideSideBar.gameSettings}} />
          </div>
          {{/if}}
+         {{#if canControl.hideSideBar.placeables}}
+         <div class="hide-ui-option">
+            <label for="hideSideBar-placeables">Placeables</label>
+            <input type="checkbox" id="hideSideBar-placeables" name="hideSideBar.placeables"
+               {{checked playerConfig.hideSideBar.placeables}} />
+         </div>
+         {{/if}}
       </section>
       {{/if}}
 

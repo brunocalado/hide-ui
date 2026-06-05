@@ -88,6 +88,7 @@ export class HideUIPlayerConfigurationForm extends HandlebarsApplicationMixin(Ap
             audioPlaylists: !(ov && (ws.hideSideBar.complete || ws.hideSideBar.audioPlaylists)),
             compendiumPacks: !(ov && (ws.hideSideBar.complete || ws.hideSideBar.compendiumPacks)),
             gameSettings: !(ov && (ws.hideSideBar.complete || ws.hideSideBar.gameSettings)),
+            placeables: !(ov && (ws.hideSideBar.complete || ws.hideSideBar.placeables)),
          },
          hidePlayers: !(ov && ws.hidePlayers),
          hideHotbar: !(ov && ws.hideHotbar),
