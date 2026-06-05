@@ -18,6 +18,8 @@
     }
   ],
 
+  "socket": true,
+
   "esmodules": [
     "scripts/hide-ui.js"
   ],

@@ -1,4 +1,4 @@
-import { MODULE_ID, PLAYER_CONFIG_STORAGE_KEY, falseySettings, SETTINGS_KEY, HIDDEN_USERS_KEY, PLAYER_CONFIG_FLAG_KEY } from "./constants.js";
+import { MODULE_ID, PLAYER_CONFIG_STORAGE_KEY, falseySettings, SETTINGS_KEY, HIDDEN_USERS_KEY, PLAYER_CONFIG_FLAG_KEY, SOCKET_EVENT } from "./constants.js";
 import { registerSettings } from "./settings.js";
 import { isFullGM } from "./helpers.js";
 
@@ -7,6 +7,17 @@ Hooks.on("init", () => {
 });
 
 Hooks.on("ready", async () => {
+   if (!isFullGM()) {
+      game.socket.on(SOCKET_EVENT, async (payload) => {
+         if (payload?.type !== "settingsUpdated") return;
+         const reload = await foundry.applications.api.DialogV2.confirm({
+            window: { title: "UI Settings Updated" },
+            content: "<p>The GM has updated the UI settings. Reload now to apply the changes?</p>",
+         });
+         if (reload) window.location.reload();
+      });
+   }
+
    const hiddenUsers = game.settings.get(MODULE_ID, HIDDEN_USERS_KEY);
 
    // Full GMs are never affected. All other users default to hidden if not explicitly exempted.

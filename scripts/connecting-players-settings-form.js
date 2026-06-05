@@ -1,4 +1,4 @@
-import { MODULE_ID, SETTINGS_KEY, truthySettings, falseySettings } from "./constants.js";
+import { MODULE_ID, SETTINGS_KEY, truthySettings, falseySettings, SOCKET_EVENT } from "./constants.js";
 
 const { HandlebarsApplicationMixin, ApplicationV2 } = foundry.applications.api;
 
@@ -93,5 +93,6 @@ export class HideUISettingsForm extends HandlebarsApplicationMixin(ApplicationV2
          insertValues: true,
       });
       await game.settings.set(MODULE_ID, SETTINGS_KEY, data);
+      game.socket.emit(SOCKET_EVENT, { type: "settingsUpdated" });
    }
 }

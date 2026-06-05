@@ -1,4 +1,4 @@
-import { MODULE_ID, HIDDEN_USERS_KEY } from "./constants.js";
+import { MODULE_ID, HIDDEN_USERS_KEY, SOCKET_EVENT } from "./constants.js";
 
 const { HandlebarsApplicationMixin, ApplicationV2 } = foundry.applications.api;
 
@@ -76,5 +76,6 @@ export class HideUIUserConfigurationForm extends HandlebarsApplicationMixin(Appl
    static async _onSubmit(event, _form, formData) {
       const hiddenUsers = formData.object.users ?? {};
       await game.settings.set(MODULE_ID, HIDDEN_USERS_KEY, hiddenUsers);
+      game.socket.emit(SOCKET_EVENT, { type: "settingsUpdated" });
    }
 }
