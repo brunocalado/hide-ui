@@ -166,5 +166,13 @@ export class HideUIPlayerConfigurationForm extends HandlebarsApplicationMixin(Ap
 
       localStorage.setItem(PLAYER_CONFIG_STORAGE_KEY, JSON.stringify(data));
       await game.user.setFlag(MODULE_ID, PLAYER_CONFIG_FLAG_KEY, data);
+
+      const reload = await foundry.applications.api.DialogV2.confirm({
+         window: { title: "Reload Required" },
+         content: "<p>Your Personal UI settings have been saved.</p><p>A reload is required to apply the changes. Reload now?</p>",
+         yes: { label: "Reload Now" },
+         no: { label: "Later" },
+      });
+      if (reload) window.location.reload();
    }
 }
