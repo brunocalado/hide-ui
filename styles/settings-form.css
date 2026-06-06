@@ -95,23 +95,23 @@
          padding: 0.48rem 0.75rem;
          border-bottom: 1px solid var(--color-border-light-tertiary);
          border-left: 3px solid transparent;
-         background: var(--color-bg);
+         background-color: var(--color-bg);
          cursor: pointer;
          user-select: none;
-         transition: background-color 0.1s ease, border-left-color 0.1s ease;
+         transition: background-color 0.15s ease, border-left-color 0.15s ease;
 
          &:last-child {
             border-bottom: none;
          }
 
          &:hover {
-            background: var(--color-bg-option);
+            background-color: rgba(176, 96, 0, 0.14);
             border-left-color: var(--color-warm-2, var(--color-border-highlight, #b06000));
          }
 
          /* Master toggle — "Hide All …" rows stand out with a different base bg */
          &.hide-ui-option--master {
-            background: var(--color-bg-option);
+            background-color: var(--color-bg-option);
             border-bottom-color: var(--color-border-light-secondary);
 
             label {
@@ -120,8 +120,7 @@
             }
 
             &:hover {
-               /* Master is already bg-option, darken slightly on hover */
-               filter: brightness(0.9);
+               background-color: rgba(176, 96, 0, 0.14);
                border-left-color: var(--color-warm-2, var(--color-border-highlight, #b06000));
             }
          }
@@ -134,7 +133,7 @@
             border-radius: 6px;
 
             &:hover {
-               background: var(--color-bg-option);
+               background-color: rgba(176, 96, 0, 0.14);
                border-left-color: var(--color-warm-2, var(--color-border-highlight, #b06000));
             }
          }
@@ -165,11 +164,10 @@
          .hide-ui-option {
             padding-left: 1.1rem;
             /* Transparent bg so parent's bg-option shows through */
-            background: transparent;
+            background-color: transparent;
 
             &:hover {
-               background: var(--color-bg-option);
-               filter: brightness(0.92);
+               background-color: rgba(176, 96, 0, 0.14);
                border-left-color: var(--color-warm-2, var(--color-border-highlight, #b06000));
             }
          }
