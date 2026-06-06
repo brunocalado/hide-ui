@@ -26,7 +26,6 @@
   "styles": [
     "styles/base.css",
     "styles/settings-form.css",
-    "styles/player-configuration-form.css",
     "styles/user-configuration-form.css"
   ],
 
