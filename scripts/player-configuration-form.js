@@ -110,8 +110,8 @@ export class HideUIPlayerConfigurationForm extends HandlebarsApplicationMixin(Ap
       form.addEventListener("submit", async (event) => {
          event.preventDefault();
          const fd = new foundry.applications.ux.FormDataExtended(form);
-         await HideUIPlayerConfigurationForm._onSubmit.call(this, event, form, fd);
-         this.close();
+         const saved = await HideUIPlayerConfigurationForm._onSubmit.call(this, event, form, fd);
+         if (saved !== false) this.close();
       }, { signal: this._submitController.signal });
    }
 
@@ -130,12 +130,14 @@ export class HideUIPlayerConfigurationForm extends HandlebarsApplicationMixin(Ap
 
    /**
     * Saves the personal UI configuration to the GM's user flag on submit.
+    * Shows a confirmation dialog when the Game Settings tab would be hidden, since the GM
+    * would lose access to all module settings from the UI until a reload or HideUI.Reset().
     * localStorage is written first so the ready hook can read it immediately after
     * the page reload that setFlag triggers in V14.
     * @param {Event} event
     * @param {HTMLFormElement} _form
     * @param {FormDataExtended} formData
-    * @returns {Promise<void>}
+    * @returns {Promise<boolean|undefined>} false if the GM cancelled, undefined otherwise.
     */
    static async _onSubmit(event, _form, formData) {
       const current = game.user.getFlag(MODULE_ID, PLAYER_CONFIG_FLAG_KEY)
@@ -144,6 +146,17 @@ export class HideUIPlayerConfigurationForm extends HandlebarsApplicationMixin(Ap
          insertKeys: true,
          insertValues: true,
       });
+
+      if (data.hideSideBar?.gameSettings || data.hideSideBar?.complete) {
+         const confirmed = await foundry.applications.api.DialogV2.confirm({
+            window: { title: "Warning: Settings Tab Will Be Hidden" },
+            content: `<p>You are about to hide the <strong>Settings</strong> sidebar tab from your own screen.</p>
+            <p>You will no longer be able to access game or module settings from the UI until the next reload.</p>
+            <p>If you get locked out, run <code>HideUI.Reset()</code> in your browser console (F12).</p>`,
+         });
+         if (!confirmed) return false;
+      }
+
       localStorage.setItem(PLAYER_CONFIG_STORAGE_KEY, JSON.stringify(data));
       await game.user.setFlag(MODULE_ID, PLAYER_CONFIG_FLAG_KEY, data);
    }

@@ -116,6 +116,6 @@ Found a bug or have an idea for a new feature? Open an issue on GitHub:
 
 This module is released under the [GNU General Public License v3](LICENSE).
 
-**Author:** [Mestre Digital](http://youtube.com/@mestredigital)
+The new hide-ui module has undergone a profound redesign compared to the original hide-player-ui code, totaling 931 modified lines of code (470 insertions and 461 deletions) across 32 impacted files. The project was completely restructured for Foundry VTT v14: the original module's interface scripts, CSS styles, and old .html templates were entirely discarded. In their place, a robust architecture based on Handlebars templates (.hbs) was built, introducing new logic files such as user-configuration-form.js, hide-ui.js, helpers.js, and constants.js. The result is a brand-new, clean, and significantly expanded module developed from the original codebase.
 
 This module is a fork of [hide-player-ui](https://github.com/gsimon2/hide-player-ui) by gsimon2. Thank you for the original work that made this possible.
