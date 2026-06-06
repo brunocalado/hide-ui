@@ -45,6 +45,46 @@ export const truthySettings = {
    hideTokenActionHUD: true,
 };
 
+export const defaultSettings = {
+   hideNavigation: {
+      complete: false,
+      navToggle: false,
+      sceneList: false,
+      bossBar: false,
+   },
+   hideControls: false,
+   hideSideBar: {
+      complete: false,
+      chatLog: false,
+      chatInput: false,
+      combatTracker: false,
+      scenesDirectory: false,
+      actorsDirectory: false,
+      itemsDirectory: false,
+      journalEntries: false,
+      rollableTables: false,
+      cardStacks: false,
+      audioPlaylists: false,
+      compendiumPacks: false,
+      gameSettings: false,
+      settingsContent: {
+         gameSettings: false,
+         activeModules: true,
+         tours: true,
+         help: true,
+      },
+      macros: false,
+      placeables: false,
+      diceSoNice: true,
+   },
+   hidePlayers: false,
+   hideHotbar: false,
+   hidePlayerConfig: false,
+   hideTokenHUD: false,
+   hideTokenActionHUD: false,
+   hideCustomHotbar: false,
+};
+
 export const falseySettings = {
    hideNavigation: {
       complete: false,

@@ -1,4 +1,4 @@
-import { MODULE_ID, SETTINGS_KEY, HIDDEN_USERS_KEY, truthySettings } from "./constants.js";
+import { MODULE_ID, SETTINGS_KEY, HIDDEN_USERS_KEY, defaultSettings } from "./constants.js";
 import { HideUISettingsForm } from "./connecting-players-settings-form.js";
 import { HideUIPlayerConfigurationForm } from "./player-configuration-form.js";
 import { HideUIUserConfigurationForm } from "./user-configuration-form.js";
@@ -34,7 +34,7 @@ export const registerSettings = () => {
    game.settings.register(MODULE_ID, SETTINGS_KEY, {
       name: "Hide UI Settings",
       scope: "world",
-      default: truthySettings,
+      default: defaultSettings,
       type: Object,
       config: false,
    });
