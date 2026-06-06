@@ -1,4 +1,4 @@
-import { MODULE_ID, SETTINGS_KEY, HIDDEN_USERS_KEY, SOCKET_EVENT } from "./constants.js";
+import { MODULE_ID, SETTINGS_KEY, HIDDEN_USERS_KEY, PLAYER_CONFIG_FLAG_KEY, PLAYER_CONFIG_STORAGE_KEY, falseySettings, SOCKET_EVENT } from "./constants.js";
 import { registerSettings } from "./settings.js";
 import { isFullGM } from "./helpers.js";
 
@@ -18,53 +18,65 @@ Hooks.on("ready", async () => {
       });
    }
 
-   const hiddenUsers = game.settings.get(MODULE_ID, HIDDEN_USERS_KEY);
-
-   // Full GMs are never affected. All other users default to hidden if not explicitly exempted.
-   const isPlayerUiOverridden = !isFullGM() && (hiddenUsers[game.user.id] !== false);
-
-   if (!isPlayerUiOverridden) return;
-
-   const settings = game.settings.get(MODULE_ID, SETTINGS_KEY);
-
-   if (settings.hideNavigation?.complete) {
-      hideElement("navigation");
+   // Determine what configuration to apply:
+   // - GM: personal config stored in their user flag (Personal UI form).
+   // - Non-GM overridden by GM: world settings from the Players UI form.
+   // - Non-GM exempt: nothing to hide.
+   let config;
+   if (isFullGM()) {
+      let playerConfig = null;
+      try {
+         const stored = localStorage.getItem(PLAYER_CONFIG_STORAGE_KEY);
+         if (stored) playerConfig = JSON.parse(stored);
+      } catch {}
+      config = playerConfig
+         ?? game.user.getFlag(MODULE_ID, PLAYER_CONFIG_FLAG_KEY)
+         ?? foundry.utils.deepClone(falseySettings);
    } else {
-      if (settings.hideNavigation?.navToggle) hideElement("navToggle");
-      if (settings.hideNavigation?.sceneList) hideElement("sceneList");
-      if (settings.hideNavigation?.bossBar) hideElement("bossBar");
+      const hiddenUsers = game.settings.get(MODULE_ID, HIDDEN_USERS_KEY);
+      const isPlayerUiOverridden = hiddenUsers[game.user.id] !== false;
+      if (!isPlayerUiOverridden) return;
+      config = game.settings.get(MODULE_ID, SETTINGS_KEY);
    }
 
-   if (settings.hideControls) {
+   if (config.hideNavigation?.complete) {
+      hideElement("navigation");
+   } else {
+      if (config.hideNavigation?.navToggle) hideElement("navToggle");
+      if (config.hideNavigation?.sceneList) hideElement("sceneList");
+      if (config.hideNavigation?.bossBar) hideElement("bossBar");
+   }
+
+   if (config.hideControls) {
       hideElement("controls");
    }
 
-   if (settings.hideSideBar?.complete) {
+   if (config.hideSideBar?.complete) {
       hideElement("sidebar");
    } else {
-      if (settings.hideSideBar?.chatLog) hideElement("chatLog");
-      if (settings.hideSideBar?.chatInput) hideElement("chatInput");
-      if (settings.hideSideBar?.combatTracker) hideElement("combatTracker");
-      if (settings.hideSideBar?.scenesDirectory) hideElement("scenesDirectory");
-      if (settings.hideSideBar?.actorsDirectory) hideElement("actorsDirectory");
-      if (settings.hideSideBar?.itemsDirectory) hideElement("itemsDirectory");
-      if (settings.hideSideBar?.journalEntries) hideElement("journalEntries");
-      if (settings.hideSideBar?.rollableTables) hideElement("rollableTables");
-      if (settings.hideSideBar?.cardStacks) hideElement("cardStacks");
-      if (settings.hideSideBar?.macros) hideElement("macros");
-      if (settings.hideSideBar?.audioPlaylists) hideElement("audioPlaylists");
-      if (settings.hideSideBar?.compendiumPacks) hideElement("compendiumPacks");
-      if (settings.hideSideBar?.gameSettings) hideElement("gameSettings");
-      if (settings.hideSideBar?.placeables) hideElement("placeables");
+      if (config.hideSideBar?.chatLog) hideElement("chatLog");
+      if (config.hideSideBar?.chatInput) hideElement("chatInput");
+      if (config.hideSideBar?.combatTracker) hideElement("combatTracker");
+      if (config.hideSideBar?.scenesDirectory) hideElement("scenesDirectory");
+      if (config.hideSideBar?.actorsDirectory) hideElement("actorsDirectory");
+      if (config.hideSideBar?.itemsDirectory) hideElement("itemsDirectory");
+      if (config.hideSideBar?.journalEntries) hideElement("journalEntries");
+      if (config.hideSideBar?.rollableTables) hideElement("rollableTables");
+      if (config.hideSideBar?.cardStacks) hideElement("cardStacks");
+      if (config.hideSideBar?.macros) hideElement("macros");
+      if (config.hideSideBar?.audioPlaylists) hideElement("audioPlaylists");
+      if (config.hideSideBar?.compendiumPacks) hideElement("compendiumPacks");
+      if (config.hideSideBar?.gameSettings) hideElement("gameSettings");
+      if (config.hideSideBar?.placeables) hideElement("placeables");
 
       // dice-so-nice hides its tab via its own setting rather than CSS
       if (game.modules.get("dice-so-nice")?.active) {
-         if (settings.hideSideBar?.diceSoNice)
+         if (config.hideSideBar?.diceSoNice)
             await game.settings.set("dice-so-nice", "hideSidebarTab", true);
       }
 
       const sidebarSettings = {};
-      for (const [key, value] of Object.entries(settings.hideSideBar ?? {})) {
+      for (const [key, value] of Object.entries(config.hideSideBar ?? {})) {
          // diceSoNice is handled via the dice-so-nice API, not CSS — exclude it from layout logic
          if (key === "diceSoNice") continue;
          sidebarSettings[key] = value;
@@ -90,15 +102,19 @@ Hooks.on("ready", async () => {
       }
    }
 
-   if (settings.hidePlayers) hideElement("players");
-   if (settings.hideHotbar) hideElement("hotbar");
-   if (settings.hidePlayerConfig) hideElement("player-config");
-   if (settings.hideTokenHUD) hideElement("token-hud");
+   if (config.hidePlayers) hideElement("players");
+   if (config.hideHotbar) hideElement("hotbar");
+   if (config.hidePlayerConfig) hideElement("player-config");
+   if (config.hideTokenHUD) hideElement("token-hud");
 
    if (game.modules.get("token-action-hud")?.active) {
-      if (settings.hideTokenActionHUD) hideElement("token-action-hud");
+      if (config.hideTokenActionHUD) hideElement("token-action-hud");
    }
 
+   if (game.modules.get("custom-hotbar")?.active) {
+      if (config.hideCustomHotbar)
+         document.body.classList.add("hide-ui-custom-hotbar");
+   }
 });
 
 /**

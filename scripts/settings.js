@@ -1,8 +1,18 @@
 import { MODULE_ID, SETTINGS_KEY, HIDDEN_USERS_KEY, truthySettings } from "./constants.js";
 import { HideUISettingsForm } from "./connecting-players-settings-form.js";
+import { HideUIPlayerConfigurationForm } from "./player-configuration-form.js";
 import { HideUIUserConfigurationForm } from "./user-configuration-form.js";
 
 export const registerSettings = () => {
+   game.settings.registerMenu(MODULE_ID, "hide-ui-player-configuration", {
+      name: "Personal UI",
+      label: "Personal UI",
+      hint: "Configure which UI elements to show or hide on your screen.",
+      icon: "fas fa-eye-slash",
+      type: HideUIPlayerConfigurationForm,
+      restricted: true,
+   });
+
    game.settings.registerMenu(MODULE_ID, "hide-ui-connecting-players", {
       name: "Players UI",
       label: "Players UI",
