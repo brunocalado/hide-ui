@@ -128,6 +128,32 @@
                <input type="checkbox" id="hideSideBar-gameSettings" name="hideSideBar.gameSettings"
                   {{checked settings.hideSideBar.gameSettings}} />
             </div>
+            <div class="hide-ui-suboptions hide-ui-suboptions--deep">
+               <div class="hide-ui-option">
+                  <label for="hideSideBar-settingsContent-gameSettings">Game Settings</label>
+                  <input type="checkbox" id="hideSideBar-settingsContent-gameSettings"
+                     name="hideSideBar.settingsContent.gameSettings"
+                     {{checked settings.hideSideBar.settingsContent.gameSettings}} />
+               </div>
+               <div class="hide-ui-option">
+                  <label for="hideSideBar-settingsContent-activeModules">Active Modules <small>(players only)</small></label>
+                  <input type="checkbox" id="hideSideBar-settingsContent-activeModules"
+                     name="hideSideBar.settingsContent.activeModules"
+                     {{checked settings.hideSideBar.settingsContent.activeModules}} />
+               </div>
+               <div class="hide-ui-option">
+                  <label for="hideSideBar-settingsContent-tours">Tour Management</label>
+                  <input type="checkbox" id="hideSideBar-settingsContent-tours"
+                     name="hideSideBar.settingsContent.tours"
+                     {{checked settings.hideSideBar.settingsContent.tours}} />
+               </div>
+               <div class="hide-ui-option">
+                  <label for="hideSideBar-settingsContent-help">Help &amp; Documentation</label>
+                  <input type="checkbox" id="hideSideBar-settingsContent-help"
+                     name="hideSideBar.settingsContent.help"
+                     {{checked settings.hideSideBar.settingsContent.help}} />
+               </div>
+            </div>
             {{#if renderDiceSoNiceOption}}
             <div class="hide-ui-option">
                <label for="hideSideBar-diceSoNice"><i class="fa-solid fa-dice-d20"></i> Dice So Nice!</label>

@@ -88,6 +88,24 @@
    display: none !important;
 }
 
+/* Sub-elements within the Settings tab panel */
+.hide-ui-settingsGameSettings #settings button[data-app="configure"] {
+   display: none !important;
+}
+
+/* Players see "Active Modules" (data-app="modules") instead of GM's "Module Management" */
+.hide-ui-settingsActiveModules #settings button[data-app="modules"] {
+   display: none !important;
+}
+
+.hide-ui-settingsTours #settings button[data-app="tours"] {
+   display: none !important;
+}
+
+.hide-ui-settingsHelp #settings section.documentation {
+   display: none !important;
+}
+
 .hide-ui-placeables #sidebar-tabs li:has(button[data-tab="placeables"]) {
    display: none !important;
 }

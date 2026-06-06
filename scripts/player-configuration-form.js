@@ -68,6 +68,13 @@ export class HideUIPlayerConfigurationForm extends HandlebarsApplicationMixin(Ap
             audioPlaylists: true,
             compendiumPacks: true,
             gameSettings: true,
+            settingsContent: {
+               gameSettings: true,
+               // GM has "Module Management", not "Active Modules" — irrelevant for personal UI
+               activeModules: false,
+               tours: true,
+               help: true,
+            },
             placeables: true,
             diceSoNice: game.modules.get("dice-so-nice")?.active ?? false,
          },

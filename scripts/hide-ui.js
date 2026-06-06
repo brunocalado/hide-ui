@@ -95,6 +95,10 @@ Hooks.on("ready", async () => {
       if (config.hideSideBar?.audioPlaylists) hideElement("audioPlaylists");
       if (config.hideSideBar?.compendiumPacks) hideElement("compendiumPacks");
       if (config.hideSideBar?.gameSettings) hideElement("gameSettings");
+      if (config.hideSideBar?.settingsContent?.gameSettings) hideElement("settingsGameSettings");
+      if (config.hideSideBar?.settingsContent?.activeModules) hideElement("settingsActiveModules");
+      if (config.hideSideBar?.settingsContent?.tours) hideElement("settingsTours");
+      if (config.hideSideBar?.settingsContent?.help) hideElement("settingsHelp");
       if (config.hideSideBar?.placeables) hideElement("placeables");
 
       // dice-so-nice hides its tab via its own setting rather than CSS
@@ -106,7 +110,8 @@ Hooks.on("ready", async () => {
       const sidebarSettings = {};
       for (const [key, value] of Object.entries(config.hideSideBar ?? {})) {
          // diceSoNice is handled via the dice-so-nice API, not CSS — exclude it from layout logic
-         if (key === "diceSoNice") continue;
+         // settingsContent is an object of sub-element flags, not a tab visibility flag
+         if (key === "diceSoNice" || key === "settingsContent") continue;
          sidebarSettings[key] = value;
       }
 

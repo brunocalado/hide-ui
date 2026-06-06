@@ -154,6 +154,40 @@
             <input type="checkbox" id="hideSideBar-gameSettings" name="hideSideBar.gameSettings"
                {{checked playerConfig.hideSideBar.gameSettings}} />
          </div>
+         <div class="hide-ui-suboptions hide-ui-suboptions--deep">
+            {{#if canControl.hideSideBar.settingsContent.gameSettings}}
+            <div class="hide-ui-option">
+               <label for="hideSideBar-settingsContent-gameSettings">Game Settings</label>
+               <input type="checkbox" id="hideSideBar-settingsContent-gameSettings"
+                  name="hideSideBar.settingsContent.gameSettings"
+                  {{checked playerConfig.hideSideBar.settingsContent.gameSettings}} />
+            </div>
+            {{/if}}
+            {{#if canControl.hideSideBar.settingsContent.activeModules}}
+            <div class="hide-ui-option">
+               <label for="hideSideBar-settingsContent-activeModules">Active Modules</label>
+               <input type="checkbox" id="hideSideBar-settingsContent-activeModules"
+                  name="hideSideBar.settingsContent.activeModules"
+                  {{checked playerConfig.hideSideBar.settingsContent.activeModules}} />
+            </div>
+            {{/if}}
+            {{#if canControl.hideSideBar.settingsContent.tours}}
+            <div class="hide-ui-option">
+               <label for="hideSideBar-settingsContent-tours">Tour Management</label>
+               <input type="checkbox" id="hideSideBar-settingsContent-tours"
+                  name="hideSideBar.settingsContent.tours"
+                  {{checked playerConfig.hideSideBar.settingsContent.tours}} />
+            </div>
+            {{/if}}
+            {{#if canControl.hideSideBar.settingsContent.help}}
+            <div class="hide-ui-option">
+               <label for="hideSideBar-settingsContent-help">Help &amp; Documentation</label>
+               <input type="checkbox" id="hideSideBar-settingsContent-help"
+                  name="hideSideBar.settingsContent.help"
+                  {{checked playerConfig.hideSideBar.settingsContent.help}} />
+            </div>
+            {{/if}}
+         </div>
          {{/if}}
          {{#if canControl.hideSideBar.diceSoNice}}
          <div class="hide-ui-option">
