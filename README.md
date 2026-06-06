@@ -32,7 +32,7 @@ Only the GM decides what players see. Players cannot change their own UI visibil
 | **Controls** | Left-side controls panel (the toolbelt) |
 | **Sidebar** | Entire sidebar · Chat log · Chat input box · Combat tracker · Scenes · Placeables · Actors · Items · Journal entries · Rollable tables · Card stacks · Macros · Audio playlists · Compendium packs · Game settings · Dice So Nice tab |
 | **Players & Interface** | Active players list · Player configuration button |
-| **Hotbar** | Standard macro hotbar · Custom Hotbar |
+| **Hotbar** | Standard macro hotbar |
 | **HUD** | Token HUD · Token Action HUD |
 
 > **Tip:** You don't have to hide everything — even removing just the combat tracker or the compendium tab can make a huge difference for players who find the interface busy.
@@ -61,7 +61,6 @@ Hide UI automatically detects the following modules and adds their UI elements t
 | Module | Extra Toggle Added |
 |---|---|
 | [Token Action HUD](https://foundryvtt.com/packages/token-action-hud-core) | Token Action HUD panel |
-| [Custom Hotbar](https://foundryvtt.com/packages/custom-hotbar) | Custom Hotbar |
 | [Dice So Nice!](https://foundryvtt.com/packages/dice-so-nice) | Dice So Nice sidebar tab |
 | [Boss Bar](https://foundryvtt.com/packages/bossbar) | Boss Bar |
 

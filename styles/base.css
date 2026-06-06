@@ -116,11 +116,6 @@
    display: none !important;
 }
 
-.hide-ui-custom-hotbar #custom-hotbar,
-.hide-ui-custom-hotbar #hotbar {
-   display: none !important;
-}
-
 .hide-ui-dynamic-sized-sidebar #sidebar.collapsed {
    height: auto !important;
 }

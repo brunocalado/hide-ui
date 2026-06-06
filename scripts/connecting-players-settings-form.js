@@ -40,7 +40,6 @@ export class HideUISettingsForm extends HandlebarsApplicationMixin(ApplicationV2
       return {
          settings,
          renderTokenActionHudOption: game.modules.get("token-action-hud")?.active ?? false,
-         renderCustomHotbarOption: game.modules.get("custom-hotbar")?.active ?? false,
          renderBossBarOption: game.modules.get("bossbar")?.active ?? false,
          renderDiceSoNiceOption: game.modules.get("dice-so-nice")?.active ?? false,
       };

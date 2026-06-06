@@ -35,6 +35,5 @@ export const truthySettings = {
    hidePlayerConfig: true,
    hideTokenHUD: true,
    hideTokenActionHUD: true,
-   hideCustomHotbar: true,
 };
 
