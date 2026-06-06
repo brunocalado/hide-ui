@@ -12,12 +12,15 @@ Foundry VTT is packed with buttons, panels, and tabs — which is great for Game
 
 Only the GM decides what players see. Players cannot change their own UI visibility.
 
+![Demo — player screen with UI elements hidden](docs/demo.webp)
+
 ---
 
 ## ✨ Features
 
 - **Global player defaults** — configure which UI elements all connecting players see by default.
 - **Per-player control** — apply (or skip) those defaults for each individual player.
+- **GM Personal UI** — the GM can also configure their own screen independently from the player settings.
 - **Real-time broadcast** — your changes reach every connected client the moment you save.
 - **New-player safe** — any player who joins for the first time automatically gets the GM's settings applied.
 - **Master toggles** — hide an entire section (e.g. the whole sidebar) with a single switch.
@@ -30,7 +33,8 @@ Only the GM decides what players see. Players cannot change their own UI visibil
 |---|---|
 | **Navigation** | Full navigation bar · Nav toggle button · Scene list · Boss Bar |
 | **Controls** | Left-side controls panel (the toolbelt) |
-| **Sidebar** | Entire sidebar · Chat log · Chat input box · Combat tracker · Scenes · Placeables · Actors · Items · Journal entries · Rollable tables · Card stacks · Macros · Audio playlists · Compendium packs · Game settings · Dice So Nice tab |
+| **Sidebar** | Entire sidebar · Chat messages · Chat input box · Combat encounters · Scenes · Placeables · Actors · Items · Journal · Rollable tables · Card stacks · Macros · Playlists · Compendium packs · Settings tab · Dice So Nice tab |
+| **Settings tab contents** | Game Settings · Active Modules · Tour Management · Help & Documentation |
 | **Players & Interface** | Active players list · Player configuration button |
 | **Hotbar** | Standard macro hotbar |
 | **HUD** | Token HUD · Token Action HUD |
@@ -42,15 +46,21 @@ Only the GM decides what players see. Players cannot change their own UI visibil
 ## 🛠️ How to Use
 
 1. Open **Game Settings** → **Module Settings** → **Hide UI**.
-2. You will find two configuration menus:
+2. You will find three configuration menus:
 
    | Menu | Purpose |
    |---|---|
+   | **Personal UI** | Configure which UI elements are hidden on the GM's own screen |
    | **Players UI** | Set the default visibility for every connecting player |
    | **Player Visibility** | Choose which players the defaults apply to |
 
 3. Open **Players UI**, toggle the elements you want to hide, and click **Save**.
 4. Open **Player Visibility** to see a list of all your players. Toggle each one on or off to control who receives the hidden-UI settings.
+5. Optionally open **Personal UI** to configure the GM's own screen separately from the player settings. A page reload is required to apply personal UI changes.
+
+![Settings menu and Player Visibility dialog](docs/player-visibility.webp)
+
+![Players UI and Personal UI configuration forms](docs/hide-options.webp)
 
 ---
 
@@ -95,12 +105,12 @@ HideUI.Reset()
 ```
 
 This will:
-- Restore all **Players UI** settings to their defaults.
-- Re-enable the **Player Visibility** list for every player.
-- Clear the **Personal UI** configuration for all users.
-- Reload every connected client automatically.
+- Set **Players UI** to hide all elements for all players (a safe known state you can then reconfigure).
+- Re-enable the **Player Visibility** toggle for every player, so all players are affected on their next login.
+- Clear the **Personal UI** configuration from every user's flags and local storage.
+- Force every connected client to reload immediately.
 
-> **Note:** This command can only be run by the GM. After the reset, the module behaves exactly as if it had just been enabled for the first time in the world.
+> **Note:** This command can only be run by the GM. After the reset, open **Players UI** and reconfigure the visibility settings from scratch.
 
 ---
 

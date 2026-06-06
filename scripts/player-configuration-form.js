@@ -83,7 +83,6 @@ export class HideUIPlayerConfigurationForm extends HandlebarsApplicationMixin(Ap
          hidePlayerConfig: true,
          hideTokenHUD: true,
          hideTokenActionHUD: true,
-         hideCustomHotbar: true,
       };
 
       return {
@@ -95,7 +94,6 @@ export class HideUIPlayerConfigurationForm extends HandlebarsApplicationMixin(Ap
          showHotbarSection: true,
          showHudSection: true,
          renderTokenActionHudOption: game.modules.get("token-action-hud")?.active ?? false,
-         renderCustomHotbarOption: game.modules.get("custom-hotbar")?.active ?? false,
          renderBossBarOption: game.modules.get("bossbar")?.active ?? false,
       };
    }

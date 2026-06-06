@@ -143,11 +143,6 @@ Hooks.on("ready", async () => {
    if (game.modules.get("token-action-hud")?.active) {
       if (config.hideTokenActionHUD) hideElement("token-action-hud");
    }
-
-   if (game.modules.get("custom-hotbar")?.active) {
-      if (config.hideCustomHotbar)
-         document.body.classList.add("hide-ui-custom-hotbar");
-   }
 });
 
 /**

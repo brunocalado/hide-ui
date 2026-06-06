@@ -82,7 +82,6 @@ export const defaultSettings = {
    hidePlayerConfig: false,
    hideTokenHUD: false,
    hideTokenActionHUD: false,
-   hideCustomHotbar: false,
 };
 
 export const falseySettings = {
@@ -122,6 +121,5 @@ export const falseySettings = {
    hidePlayerConfig: false,
    hideTokenHUD: false,
    hideTokenActionHUD: false,
-   hideCustomHotbar: false,
 };
 
