@@ -59,8 +59,8 @@ export class HideUISettingsForm extends HandlebarsApplicationMixin(ApplicationV2
       form.addEventListener("submit", async (event) => {
          event.preventDefault();
          const fd = new foundry.applications.ux.FormDataExtended(form);
-         await HideUISettingsForm._onSubmit.call(this, event, form, fd);
-         this.close();
+         const saved = await HideUISettingsForm._onSubmit.call(this, event, form, fd);
+         if (saved !== false) this.close();
       }, { signal: this._submitController.signal });
    }
 
@@ -80,10 +80,13 @@ export class HideUISettingsForm extends HandlebarsApplicationMixin(ApplicationV2
    /**
     * Persists form data to world settings on submit.
     * Merges into existing settings so keys absent from the form (hidden by conditionals) are preserved.
+    * Shows a confirmation dialog when the Game Settings tab would be hidden, since players
+    * would lose access to all module settings from the UI. Returns false to signal the caller
+    * to keep the form open when the GM cancels.
     * @param {Event} event
     * @param {HTMLFormElement} _form
     * @param {FormDataExtended} formData
-    * @returns {Promise<void>}
+    * @returns {Promise<boolean|undefined>} false if the GM cancelled, undefined otherwise.
     */
    static async _onSubmit(event, _form, formData) {
       const current = game.settings.get(MODULE_ID, SETTINGS_KEY);
@@ -91,6 +94,17 @@ export class HideUISettingsForm extends HandlebarsApplicationMixin(ApplicationV2
          insertKeys: true,
          insertValues: true,
       });
+
+      if (data.hideSideBar?.gameSettings || data.hideSideBar?.complete) {
+         const confirmed = await foundry.applications.api.DialogV2.confirm({
+            window: { title: "Warning: Settings Tab Will Be Hidden" },
+            content: `<p>You are about to hide the <strong>Settings</strong> sidebar tab from all affected players.</p>
+            <p>Players will no longer be able to access game or module settings from the UI.</p>
+            <p>If you need to undo this later, run <code>HideUI.Reset()</code> in your browser console (F12).</p>`,
+         });
+         if (!confirmed) return false;
+      }
+
       await game.settings.set(MODULE_ID, SETTINGS_KEY, data);
       game.socket.emit(SOCKET_EVENT, { type: "settingsUpdated" });
    }

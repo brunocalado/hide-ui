@@ -1,4 +1,4 @@
-import { MODULE_ID, SETTINGS_KEY, HIDDEN_USERS_KEY, PLAYER_CONFIG_FLAG_KEY, PLAYER_CONFIG_STORAGE_KEY, falseySettings, SOCKET_EVENT } from "./constants.js";
+import { MODULE_ID, SETTINGS_KEY, HIDDEN_USERS_KEY, PLAYER_CONFIG_FLAG_KEY, PLAYER_CONFIG_STORAGE_KEY, falseySettings, truthySettings, SOCKET_EVENT } from "./constants.js";
 import { registerSettings } from "./settings.js";
 import { isFullGM } from "./helpers.js";
 
@@ -9,6 +9,11 @@ Hooks.on("init", () => {
 Hooks.on("ready", async () => {
    if (!isFullGM()) {
       game.socket.on(SOCKET_EVENT, async (payload) => {
+         if (payload?.type === "forceReset") {
+            localStorage.removeItem(PLAYER_CONFIG_STORAGE_KEY);
+            window.location.reload();
+            return;
+         }
          if (payload?.type !== "settingsUpdated") return;
          const reload = await foundry.applications.api.DialogV2.confirm({
             window: { title: "UI Settings Updated" },
@@ -17,6 +22,29 @@ Hooks.on("ready", async () => {
          if (reload) window.location.reload();
       });
    }
+
+   // Expose the reset utility for GM use from the browser console.
+   globalThis.HideUI = {
+      /**
+       * Resets all module settings to defaults and reloads every connected client.
+       * Intended as an escape hatch when the GM has accidentally hidden the settings UI.
+       * Must be called from the GM's browser console (F12).
+       * @returns {Promise<void>}
+       */
+      Reset: async () => {
+         if (!isFullGM()) {
+            ui.notifications.error("HideUI.Reset() can only be called by the GM.");
+            return;
+         }
+         console.log(`[${MODULE_ID}] Resetting all module settings to defaults…`);
+         await game.settings.set(MODULE_ID, SETTINGS_KEY, foundry.utils.deepClone(truthySettings));
+         await game.settings.set(MODULE_ID, HIDDEN_USERS_KEY, {});
+         await Promise.all(game.users.map(u => u.unsetFlag(MODULE_ID, PLAYER_CONFIG_FLAG_KEY)));
+         game.socket.emit(SOCKET_EVENT, { type: "forceReset" });
+         localStorage.removeItem(PLAYER_CONFIG_STORAGE_KEY);
+         window.location.reload();
+      },
+   };
 
    // Determine what configuration to apply:
    // - GM: personal config stored in their user flag (Personal UI form).

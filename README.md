@@ -82,6 +82,28 @@ https://raw.githubusercontent.com/brunocalado/hide-ui/main/module.json
 
 ---
 
+## 🆘 Emergency Reset
+
+If you accidentally hide the Settings tab for all players — or find yourself in a state where you can no longer access the module settings from the UI — you can reset everything from the browser console.
+
+1. Press **F12** to open the browser developer tools.
+2. Go to the **Console** tab.
+3. Type the following command and press **Enter**:
+
+```js
+HideUI.Reset()
+```
+
+This will:
+- Restore all **Players UI** settings to their defaults.
+- Re-enable the **Player Visibility** list for every player.
+- Clear the **Personal UI** configuration for all users.
+- Reload every connected client automatically.
+
+> **Note:** This command can only be run by the GM. After the reset, the module behaves exactly as if it had just been enabled for the first time in the world.
+
+---
+
 ## 🐛 Bug Reports & Feature Requests
 
 Found a bug or have an idea for a new feature? Open an issue on GitHub:
