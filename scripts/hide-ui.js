@@ -84,6 +84,7 @@ Hooks.on("ready", async () => {
    } else {
       if (config.hideSideBar?.chatLog) hideElement("chatLog");
       if (config.hideSideBar?.chatInput) hideElement("chatInput");
+      if (config.hideSideBar?.chatMenuBar) hideElement("chatMenuBar");
       if (config.hideSideBar?.combatTracker) hideElement("combatTracker");
       if (config.hideSideBar?.scenesDirectory) hideElement("scenesDirectory");
       if (config.hideSideBar?.actorsDirectory) hideElement("actorsDirectory");

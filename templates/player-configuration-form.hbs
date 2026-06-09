@@ -69,6 +69,13 @@
                <input type="checkbox" id="hideSideBar-chatInput" name="hideSideBar.chatInput"
                   {{checked playerConfig.hideSideBar.chatInput}} />
             </div>
+            {{#if canControl.hideSideBar.chatMenuBar}}
+            <div class="hide-ui-option">
+               <label for="hideSideBar-chatMenuBar">Chat Editor Menu Bar</label>
+               <input type="checkbox" id="hideSideBar-chatMenuBar" name="hideSideBar.chatMenuBar"
+                  {{checked playerConfig.hideSideBar.chatMenuBar}} />
+            </div>
+            {{/if}}
          </div>
          {{/if}}
          {{#if canControl.hideSideBar.combatTracker}}

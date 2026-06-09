@@ -44,6 +44,10 @@
    display: none !important;
 }
 
+.hide-ui-chatMenuBar #chat-message .menu-container {
+   display: none !important;
+}
+
 .hide-ui-combatTracker #sidebar-tabs li:has(button[data-tab="combat"]) {
    display: none !important;
 }

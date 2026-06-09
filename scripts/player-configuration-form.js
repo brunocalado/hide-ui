@@ -57,6 +57,7 @@ export class HideUIPlayerConfigurationForm extends HandlebarsApplicationMixin(Ap
          hideSideBar: {
             chatLog: true,
             chatInput: true,
+            chatMenuBar: true,
             combatTracker: true,
             scenesDirectory: true,
             actorsDirectory: true,
