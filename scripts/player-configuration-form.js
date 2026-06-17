@@ -80,6 +80,7 @@ export class HideUIPlayerConfigurationForm extends HandlebarsApplicationMixin(Ap
             diceSoNice: game.modules.get("dice-so-nice")?.active ?? false,
          },
          hidePlayers: true,
+         hideCameraViews: true,
          hideHotbar: true,
          hidePlayerConfig: true,
          hideTokenHUD: true,

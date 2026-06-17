@@ -122,6 +122,10 @@
    display: none !important;
 }
 
+.hide-ui-camera-views #camera-views {
+   display: none !important;
+}
+
 .hide-ui-hotbar #hotbar {
    display: none !important;
 }

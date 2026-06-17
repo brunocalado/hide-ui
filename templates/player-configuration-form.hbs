@@ -219,6 +219,15 @@
                {{checked playerConfig.hidePlayers}} />
          </div>
          {{/if}}
+         {{#if canControl.hideCameraViews}}
+         <div class="hide-ui-option">
+            <label for="hideCameraViews">
+               <i class="fa-solid fa-camera-web"></i> Camera / Audio Bar
+            </label>
+            <input type="checkbox" id="hideCameraViews" name="hideCameraViews"
+               {{checked playerConfig.hideCameraViews}} />
+         </div>
+         {{/if}}
          {{#if canControl.hidePlayerConfig}}
          <div class="hide-ui-option">
             <label for="hidePlayerConfig">Player Configuration Button</label>

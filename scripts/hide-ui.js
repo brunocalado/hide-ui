@@ -137,6 +137,7 @@ Hooks.on("ready", async () => {
    }
 
    if (config.hidePlayers) hideElement("players");
+   if (config.hideCameraViews) hideElement("camera-views");
    if (config.hideHotbar) hideElement("hotbar");
    if (config.hidePlayerConfig) hideElement("player-config");
    if (config.hideTokenHUD) hideElement("token-hud");
