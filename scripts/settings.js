@@ -1,4 +1,4 @@
-import { MODULE_ID, SETTINGS_KEY, HIDDEN_USERS_KEY, defaultSettings } from "./constants.js";
+import { MODULE_ID, SETTINGS_KEY, HIDDEN_USERS_KEY, GM_CONFIGS_KEY, defaultSettings } from "./constants.js";
 import { HideUISettingsForm } from "./connecting-players-settings-form.js";
 import { HideUIPlayerConfigurationForm } from "./player-configuration-form.js";
 import { HideUIUserConfigurationForm } from "./user-configuration-form.js";
@@ -43,6 +43,16 @@ export const registerSettings = () => {
    // Users absent from this map default to hidden on their next login.
    game.settings.register(MODULE_ID, HIDDEN_USERS_KEY, {
       name: "Hidden Users",
+      scope: "world",
+      default: {},
+      type: Object,
+      config: false,
+   });
+
+   // Maps GM user ID → personal UI config object.
+   // World-scoped so the config persists and is readable from any computer.
+   game.settings.register(MODULE_ID, GM_CONFIGS_KEY, {
+      name: "GM Personal UI Configs",
       scope: "world",
       default: {},
       type: Object,

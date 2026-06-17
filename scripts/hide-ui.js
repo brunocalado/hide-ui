@@ -1,4 +1,4 @@
-import { MODULE_ID, SETTINGS_KEY, HIDDEN_USERS_KEY, PLAYER_CONFIG_FLAG_KEY, PLAYER_CONFIG_STORAGE_KEY, falseySettings, truthySettings, SOCKET_EVENT } from "./constants.js";
+import { MODULE_ID, SETTINGS_KEY, HIDDEN_USERS_KEY, GM_CONFIGS_KEY, PLAYER_CONFIG_STORAGE_KEY, falseySettings, truthySettings, SOCKET_EVENT } from "./constants.js";
 import { registerSettings } from "./settings.js";
 import { isFullGM } from "./helpers.js";
 
@@ -39,7 +39,7 @@ Hooks.on("ready", async () => {
          console.log(`[${MODULE_ID}] Resetting all module settings to defaults…`);
          await game.settings.set(MODULE_ID, SETTINGS_KEY, foundry.utils.deepClone(truthySettings));
          await game.settings.set(MODULE_ID, HIDDEN_USERS_KEY, {});
-         await Promise.all(game.users.map(u => u.unsetFlag(MODULE_ID, PLAYER_CONFIG_FLAG_KEY)));
+         await game.settings.set(MODULE_ID, GM_CONFIGS_KEY, {});
          game.socket.emit(SOCKET_EVENT, { type: "forceReset" });
          localStorage.removeItem(PLAYER_CONFIG_STORAGE_KEY);
          window.location.reload();
@@ -58,7 +58,7 @@ Hooks.on("ready", async () => {
          if (stored) playerConfig = JSON.parse(stored);
       } catch {}
       config = playerConfig
-         ?? game.user.getFlag(MODULE_ID, PLAYER_CONFIG_FLAG_KEY)
+         ?? game.settings.get(MODULE_ID, GM_CONFIGS_KEY)[game.user.id]
          ?? foundry.utils.deepClone(falseySettings);
    } else {
       const hiddenUsers = game.settings.get(MODULE_ID, HIDDEN_USERS_KEY);

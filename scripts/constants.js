@@ -2,6 +2,7 @@ export const MODULE_ID = "hide-ui";
 
 export const SETTINGS_KEY = "settings";
 export const HIDDEN_USERS_KEY = "hiddenUsers";
+export const GM_CONFIGS_KEY = "gmConfigs";
 export const PLAYER_CONFIG_FLAG_KEY = "playerConfig";
 export const PLAYER_CONFIG_STORAGE_KEY = `${MODULE_ID}.${PLAYER_CONFIG_FLAG_KEY}`;
 export const SOCKET_EVENT = `module.${MODULE_ID}`;

@@ -1,4 +1,4 @@
-import { MODULE_ID, PLAYER_CONFIG_STORAGE_KEY, SETTINGS_KEY, HIDDEN_USERS_KEY, PLAYER_CONFIG_FLAG_KEY, truthySettings, falseySettings } from "./constants.js";
+import { MODULE_ID, PLAYER_CONFIG_STORAGE_KEY, PLAYER_CONFIG_FLAG_KEY, GM_CONFIGS_KEY, truthySettings, falseySettings } from "./constants.js";
 import { isFullGM } from "./helpers.js";
 
 const { HandlebarsApplicationMixin, ApplicationV2 } = foundry.applications.api;
@@ -44,7 +44,7 @@ export class HideUIPlayerConfigurationForm extends HandlebarsApplicationMixin(Ap
          const stored = localStorage.getItem(PLAYER_CONFIG_STORAGE_KEY);
          if (stored) savedPlayerConfig = JSON.parse(stored);
       } catch {}
-      savedPlayerConfig ??= game.user.getFlag(MODULE_ID, PLAYER_CONFIG_FLAG_KEY);
+      savedPlayerConfig ??= game.settings.get(MODULE_ID, GM_CONFIGS_KEY)[game.user.id];
 
       const playerConfig = this._formState
          ?? savedPlayerConfig
@@ -165,7 +165,8 @@ export class HideUIPlayerConfigurationForm extends HandlebarsApplicationMixin(Ap
       }
 
       localStorage.setItem(PLAYER_CONFIG_STORAGE_KEY, JSON.stringify(data));
-      await game.user.setFlag(MODULE_ID, PLAYER_CONFIG_FLAG_KEY, data);
+      const gmConfigs = game.settings.get(MODULE_ID, GM_CONFIGS_KEY);
+      await game.settings.set(MODULE_ID, GM_CONFIGS_KEY, { ...gmConfigs, [game.user.id]: data });
 
       const reload = await foundry.applications.api.DialogV2.confirm({
          window: { title: "Reload Required" },
