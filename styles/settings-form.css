@@ -181,6 +181,15 @@
          }
       }
 
+      /* ── Tri-state visibility select (off / hide / autohide) ────── */
+      /* Native <select> on the Navigation/Sidebar/Controls/Hotbar rows.
+         Foundry styles the control itself; we only keep it compact. */
+      select.hide-ui-mode {
+         flex: 0 0 auto;
+         width: auto;
+         min-width: 8rem;
+      }
+
       /* ── Sticky footer ──────────────────────────────────────────── */
       .hide-ui-form-footer {
          flex-shrink: 0;

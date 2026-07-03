@@ -1,5 +1,5 @@
 import { MODULE_ID, PLAYER_CONFIG_STORAGE_KEY, PLAYER_CONFIG_FLAG_KEY, GM_CONFIGS_KEY, truthySettings, falseySettings } from "./constants.js";
-import { isFullGM } from "./helpers.js";
+import { isFullGM, modeFlags } from "./helpers.js";
 
 const { HandlebarsApplicationMixin, ApplicationV2 } = foundry.applications.api;
 
@@ -90,6 +90,8 @@ export class HideUIPlayerConfigurationForm extends HandlebarsApplicationMixin(Ap
       return {
          playerConfig,
          canControl,
+         // Per-option booleans for the Macro Hotbar's tri-state (off/hide/autohide) select.
+         hideHotbarMode: modeFlags(playerConfig.hideHotbar),
          showNavigationSection: true,
          showSidebarSection: true,
          showPlayersSection: true,
@@ -130,7 +132,9 @@ export class HideUIPlayerConfigurationForm extends HandlebarsApplicationMixin(Ap
     */
    static async _onToggleAll(event, _target) {
       const form = this.element.querySelector("form");
-      const anyChecked = [...form.querySelectorAll('input[type="checkbox"]')].some(cb => cb.checked);
+      // "Active" means any checkbox is ticked or any tri-state select is not "off".
+      const anyChecked = [...form.querySelectorAll('input[type="checkbox"]')].some(cb => cb.checked)
+         || [...form.querySelectorAll("select.hide-ui-mode")].some(s => s.value !== "off");
       this._formState = foundry.utils.deepClone(anyChecked ? falseySettings : truthySettings);
       this.render();
    }

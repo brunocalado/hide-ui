@@ -2,7 +2,7 @@
 
 > **Take back your screen.** Hide UI gives Game Masters full control over what players see in the Foundry VTT interface.
 
-[![Buy Me a Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-Donate-red?style=for-the-badge&logo=buy-me-a-coffee)](https://buymeacoffee.com/mestredigital)
+[![Buy Me a Coffee](https://img.shields.io/badge/Buy_Me_a_Coffee-Donate-FFDD00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black)](https://buymeacoffee.com/mestredigital) [![More Modules](https://img.shields.io/badge/Foundry%20VTT-More%20Modules-red?style=for-the-badge&logo=gamepad)](https://mestredigital.online/pages/projetos-en)
 
 ---
 
@@ -24,6 +24,7 @@ Only the GM decides what players see. Players cannot change their own UI visibil
 - **Real-time broadcast** — your changes reach every connected client the moment you save.
 - **New-player safe** — any player who joins for the first time automatically gets the GM's settings applied.
 - **Master toggles** — hide an entire section (e.g. the whole sidebar) with a single switch.
+- **Auto-hide hotbar** — instead of hiding the Macro Hotbar outright, set it to auto-hide: it slides out of the way after a few seconds and reappears when you move the mouse over it.
 
 ---
 
@@ -36,7 +37,7 @@ Only the GM decides what players see. Players cannot change their own UI visibil
 | **Sidebar** | Entire sidebar · Chat messages · Chat input box · Combat encounters · Scenes · Placeables · Actors · Items · Journal · Rollable tables · Card stacks · Macros · Playlists · Compendium packs · Settings tab · Dice So Nice tab |
 | **Settings tab contents** | Game Settings · Active Modules · Tour Management · Help & Documentation |
 | **Players & Interface** | Active players list · Player configuration button |
-| **Hotbar** | Standard macro hotbar |
+| **Hotbar** | Standard macro hotbar — with an optional **auto-hide** mode (Off / Hide / Auto-hide) that lets it peek at the bottom edge and reveal on hover |
 | **HUD** | Token HUD · Token Action HUD |
 
 > **Tip:** You don't have to hide everything — even removing just the combat tracker or the compendium tab can make a huge difference for players who find the interface busy.

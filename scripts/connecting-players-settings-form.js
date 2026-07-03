@@ -1,4 +1,5 @@
 import { MODULE_ID, SETTINGS_KEY, truthySettings, falseySettings, SOCKET_EVENT } from "./constants.js";
+import { modeFlags } from "./helpers.js";
 
 const { HandlebarsApplicationMixin, ApplicationV2 } = foundry.applications.api;
 
@@ -39,6 +40,8 @@ export class HideUISettingsForm extends HandlebarsApplicationMixin(ApplicationV2
       const settings = this._formState ?? game.settings.get(MODULE_ID, SETTINGS_KEY);
       return {
          settings,
+         // Per-option booleans for the Macro Hotbar's tri-state (off/hide/autohide) select.
+         hideHotbarMode: modeFlags(settings.hideHotbar),
          renderTokenActionHudOption: game.modules.get("token-action-hud")?.active ?? false,
          renderBossBarOption: game.modules.get("bossbar")?.active ?? false,
          renderDiceSoNiceOption: game.modules.get("dice-so-nice")?.active ?? false,
@@ -72,7 +75,9 @@ export class HideUISettingsForm extends HandlebarsApplicationMixin(ApplicationV2
     */
    static async _onToggleAll(event, _target) {
       const form = this.element.querySelector("form");
-      const anyChecked = [...form.querySelectorAll('input[type="checkbox"]')].some(cb => cb.checked);
+      // "Active" means any checkbox is ticked or any tri-state select is not "off".
+      const anyChecked = [...form.querySelectorAll('input[type="checkbox"]')].some(cb => cb.checked)
+         || [...form.querySelectorAll("select.hide-ui-mode")].some(s => s.value !== "off");
       this._formState = foundry.utils.deepClone(anyChecked ? falseySettings : truthySettings);
       this.render();
    }

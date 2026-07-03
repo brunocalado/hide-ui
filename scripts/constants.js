@@ -7,6 +7,15 @@ export const PLAYER_CONFIG_FLAG_KEY = "playerConfig";
 export const PLAYER_CONFIG_STORAGE_KEY = `${MODULE_ID}.${PLAYER_CONFIG_FLAG_KEY}`;
 export const SOCKET_EVENT = `module.${MODULE_ID}`;
 
+/**
+ * Visibility mode for the Macro Hotbar, which supports auto-hide.
+ * Legacy configs stored a boolean here; normalizeMode() (helpers.js) coerces it.
+ * @typedef {"off"|"hide"|"autohide"} VisibilityMode
+ */
+
+/** Delay before the auto-hidden hotbar slides into its peek state, in milliseconds. */
+export const AUTOHIDE_DELAY_MS = 3000;
+
 export const truthySettings = {
    hideNavigation: {
       complete: true,
@@ -42,7 +51,7 @@ export const truthySettings = {
    },
    hidePlayers: true,
    hideCameraViews: true,
-   hideHotbar: true,
+   hideHotbar: "hide",
    hidePlayerConfig: true,
    hideTokenHUD: true,
    hideTokenActionHUD: true,
@@ -83,7 +92,7 @@ export const defaultSettings = {
    },
    hidePlayers: false,
    hideCameraViews: false,
-   hideHotbar: false,
+   hideHotbar: "off",
    hidePlayerConfig: false,
    hideTokenHUD: false,
    hideTokenActionHUD: false,
@@ -124,7 +133,7 @@ export const falseySettings = {
    },
    hidePlayers: false,
    hideCameraViews: false,
-   hideHotbar: false,
+   hideHotbar: "off",
    hidePlayerConfig: false,
    hideTokenHUD: false,
    hideTokenActionHUD: false,

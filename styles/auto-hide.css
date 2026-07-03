@@ -1,0 +1,22 @@
+/* ── Auto-hide behavior (Macro Hotbar only) ───────────────────────────────── */
+/* Added to <body> at runtime by hide-ui.js when the hotbar is set to "autohide":
+     .hide-ui-autohide-hotbar  → sets up the transition + hover-reveal (added immediately)
+     .hide-ui-peek-hotbar      → arms the collapsed "peek" state (added after AUTOHIDE_DELAY_MS)
+   Reveal is pure CSS (:hover), so it survives Foundry re-renders with no JS listeners.
+   The base transition-delay is a grace period before re-hiding on mouse-leave;
+   :hover zeroes it so revealing is immediate. */
+
+/* Macro Hotbar — slides down, leaving a thin strip peeking at the bottom edge */
+.hide-ui-autohide-hotbar #hotbar {
+   transition: transform 0.35s ease;
+   transition-delay: 0.4s;
+}
+.hide-ui-autohide-hotbar #hotbar:hover {
+   transition-delay: 0s;
+}
+.hide-ui-autohide-hotbar.hide-ui-peek-hotbar #hotbar {
+   transform: translateY(calc(100% - 8px));
+}
+.hide-ui-autohide-hotbar.hide-ui-peek-hotbar #hotbar:hover {
+   transform: translateY(0);
+}

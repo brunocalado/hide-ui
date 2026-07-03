@@ -1,6 +1,6 @@
-import { MODULE_ID, SETTINGS_KEY, HIDDEN_USERS_KEY, GM_CONFIGS_KEY, PLAYER_CONFIG_STORAGE_KEY, falseySettings, truthySettings, SOCKET_EVENT } from "./constants.js";
+import { MODULE_ID, SETTINGS_KEY, HIDDEN_USERS_KEY, GM_CONFIGS_KEY, PLAYER_CONFIG_STORAGE_KEY, falseySettings, truthySettings, SOCKET_EVENT, AUTOHIDE_DELAY_MS } from "./constants.js";
 import { registerSettings } from "./settings.js";
-import { isFullGM } from "./helpers.js";
+import { isFullGM, normalizeMode } from "./helpers.js";
 
 Hooks.on("init", () => {
    registerSettings();
@@ -138,7 +138,13 @@ Hooks.on("ready", async () => {
 
    if (config.hidePlayers) hideElement("players");
    if (config.hideCameraViews) hideElement("camera-views");
-   if (config.hideHotbar) hideElement("hotbar");
+
+   // The Macro Hotbar is the only element with a tri-state mode
+   // ("off" | "hide" | "autohide"). normalizeMode() coerces legacy boolean configs.
+   const hotbarMode = normalizeMode(config.hideHotbar);
+   if (hotbarMode === "hide") hideElement("hotbar");
+   else if (hotbarMode === "autohide") autoHideElement("hotbar");
+
    if (config.hidePlayerConfig) hideElement("player-config");
    if (config.hideTokenHUD) hideElement("token-hud");
 
@@ -155,6 +161,19 @@ Hooks.on("ready", async () => {
  */
 const hideElement = (id) => {
    document.body.classList.add(`hide-ui-${id}`);
+};
+
+/**
+ * Enables auto-hide for the Macro Hotbar: the reveal-on-hover behavior is pure CSS
+ * (body class + `:hover`, see styles/auto-hide.css), so it survives Foundry re-renders
+ * without re-binding listeners. This only arms the collapsed "peek" state after a delay;
+ * the hotbar stays visible until then.
+ * @param {string} id - The element key ("hotbar").
+ * @returns {void}
+ */
+const autoHideElement = (id) => {
+   document.body.classList.add(`hide-ui-autohide-${id}`);
+   window.setTimeout(() => document.body.classList.add(`hide-ui-peek-${id}`), AUTOHIDE_DELAY_MS);
 };
 
 /**

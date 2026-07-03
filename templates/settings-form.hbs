@@ -199,7 +199,11 @@
          </h3>
          <div class="hide-ui-option">
             <label for="hideHotbar">Macro Hotbar</label>
-            <input type="checkbox" id="hideHotbar" name="hideHotbar" {{checked settings.hideHotbar}} />
+            <select id="hideHotbar" name="hideHotbar" class="hide-ui-mode">
+               <option value="off" {{#if hideHotbarMode.off}}selected{{/if}}>Off</option>
+               <option value="hide" {{#if hideHotbarMode.hide}}selected{{/if}}>Hide</option>
+               <option value="autohide" {{#if hideHotbarMode.autohide}}selected{{/if}}>Auto-hide</option>
+            </select>
          </div>
       </section>
 
