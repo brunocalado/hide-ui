@@ -145,6 +145,12 @@ Hooks.on("ready", async () => {
    if (hotbarMode === "hide") hideElement("hotbar");
    else if (hotbarMode === "autohide") autoHideElement("hotbar");
 
+   // Individual hotbar control buttons, hidden independently of the hotbar itself.
+   if (config.hideHotbarControls?.lock) hideElement("hotbarLock");
+   if (config.hideHotbarControls?.clear) hideElement("hotbarClear");
+   if (config.hideHotbarControls?.menu) hideElement("hotbarMenu");
+   if (config.hideHotbarControls?.mute) hideElement("hotbarMute");
+
    if (config.hidePlayerConfig) hideElement("player-config");
    if (config.hideTokenHUD) hideElement("token-hud");
 

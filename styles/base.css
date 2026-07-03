@@ -130,6 +130,22 @@
    display: none !important;
 }
 
+.hide-ui-hotbarLock #hotbar button[data-action="lock"] {
+   display: none !important;
+}
+
+.hide-ui-hotbarClear #hotbar button[data-action="clear"] {
+   display: none !important;
+}
+
+.hide-ui-hotbarMenu #hotbar button[data-action="menu"] {
+   display: none !important;
+}
+
+.hide-ui-hotbarMute #hotbar button[data-action="mute"] {
+   display: none !important;
+}
+
 .hide-ui-player-config .user-config {
    display: none !important;
 }

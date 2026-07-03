@@ -344,6 +344,46 @@
             </div>
          </div>
          {{/if}}
+         {{#if canControl.hideHotbarControls.lock}}
+         <div class="hide-ui-option">
+            <label for="hideHotbarControls-lock"><i class="fa-solid fa-lock"></i> Lock Hotbar</label>
+            <label class="hide-ui-switch">
+               <input type="checkbox" id="hideHotbarControls-lock" name="hideHotbarControls.lock"
+               {{checked playerConfig.hideHotbarControls.lock}} />
+               <div class="hide-ui-switch-track"></div>
+            </label>
+         </div>
+         {{/if}}
+         {{#if canControl.hideHotbarControls.clear}}
+         <div class="hide-ui-option">
+            <label for="hideHotbarControls-clear"><i class="fa-solid fa-trash"></i> Clear Hotbar</label>
+            <label class="hide-ui-switch">
+               <input type="checkbox" id="hideHotbarControls-clear" name="hideHotbarControls.clear"
+               {{checked playerConfig.hideHotbarControls.clear}} />
+               <div class="hide-ui-switch-track"></div>
+            </label>
+         </div>
+         {{/if}}
+         {{#if canControl.hideHotbarControls.menu}}
+         <div class="hide-ui-option">
+            <label for="hideHotbarControls-menu"><i class="fa-solid fa-bars"></i> Main Menu</label>
+            <label class="hide-ui-switch">
+               <input type="checkbox" id="hideHotbarControls-menu" name="hideHotbarControls.menu"
+               {{checked playerConfig.hideHotbarControls.menu}} />
+               <div class="hide-ui-switch-track"></div>
+            </label>
+         </div>
+         {{/if}}
+         {{#if canControl.hideHotbarControls.mute}}
+         <div class="hide-ui-option">
+            <label for="hideHotbarControls-mute"><i class="fa-solid fa-volume"></i> Mute Volume</label>
+            <label class="hide-ui-switch">
+               <input type="checkbox" id="hideHotbarControls-mute" name="hideHotbarControls.mute"
+               {{checked playerConfig.hideHotbarControls.mute}} />
+               <div class="hide-ui-switch-track"></div>
+            </label>
+         </div>
+         {{/if}}
       </section>
       {{/if}}
 

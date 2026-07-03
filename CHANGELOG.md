@@ -1,3 +1,7 @@
+# 0.0.7
+
+- Added options to hide individual **Macro Hotbar controls**, each toggled independently of the hotbar itself: **Lock Hotbar**, **Clear Hotbar**, **Main Menu**, and **Mute Volume**. Available in both the Personal UI and Players UI forms, under the Hotbar section.
+
 # 0.0.6
 
 - Redesigned the Players UI and Personal UI config forms: checkboxes are now Apple-style toggle switches, and the Macro Hotbar mode picker is a 3-button segmented control (Off / Hide / Auto-hide) instead of a dropdown.
