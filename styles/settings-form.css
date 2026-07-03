@@ -7,10 +7,6 @@
    --hide-ui-accent: var(--color-warm-2, var(--color-border-highlight, #b06000));
    --hide-ui-accent-wash: color-mix(in srgb, var(--hide-ui-accent) 16%, transparent);
    --hide-ui-accent-faint: color-mix(in srgb, var(--hide-ui-accent) 8%, transparent);
-   /* Muted fill for a toggle's "on" interior — a solid block of full-strength
-      accent reads as too loud at 36×20px, so this blends toward the track's
-      own resting color instead of toward transparency. */
-   --hide-ui-accent-track: color-mix(in srgb, var(--hide-ui-accent) 32%, var(--color-bg-option));
 
    /*
     * AppV2's .window-content is a flex child that fills the window frame.
@@ -215,26 +211,25 @@
 
       /* ── Apple-style toggle switches ──────────────────────────────── */
       /*
-       * Foundry's own core stylesheet skins input[type="checkbox"] directly
-       * (including a checkmark glyph drawn via a highly-specific :checked
-       * rule), and separately seems to have generic rules targeting a plain
-       * "input + span" pair too — likely because that exact structure
-       * (hidden checkbox + sibling span) is the standard recipe for a custom
-       * switch, and Foundry's own design system apparently uses it for its
-       * own toggles. A bare `<span>` kept losing its background/border no
-       * matter how much specificity or !important we threw at it, even
-       * though the *content* of an untouched pseudo-element and the
-       * *:checked-qualified* variant (one extra pseudo-class of specificity)
-       * both rendered fine — the plain, unqualified span was the only thing
-       * consistently overridden.
+       * Root cause of several failed rounds: the track's background/border
+       * pointed at bare core theme variables (var(--color-bg-option),
+       * var(--color-border-light-primary)) with no fallback. Those vars are
+       * not defined in this form's scope, and an undefined var() without a
+       * fallback makes the whole declaration invalid at computed-value time —
+       * the property then resolves to its initial value (transparent for a
+       * background), so the track rendered as nothing but the hardcoded-#fff
+       * knob. The on-state was worse: it used
+       * color-mix(..., var(--color-bg-option)), and an undefined color inside
+       * color-mix voids the entire function, so the "on" fill was transparent
+       * too. Fix: hardcoded, theme-independent values for the track surfaces
+       * (neutral greys for off, the accent token — which itself ends in a
+       * hardcoded fallback — for on), so the switch can never collapse to an
+       * invisible track again.
        *
-       * Escaping the collision outright is more reliable than out-specifying
-       * an unknown, possibly-!important core rule: the track is a <div> with
-       * its own class (Foundry has no rule referencing `.hide-ui-switch-track`)
-       * instead of a bare <span>. `.hide-ui-switch` remains a <label> wrapping
-       * both input and track (settings-form.hbs / player-configuration-form.hbs)
-       * or a <div> nested in an outer <label> (user-configuration-form.hbs);
-       * either way clicking it toggles the input natively, no JS required.
+       * The track is a <div class="hide-ui-switch-track"> and `.hide-ui-switch`
+       * is a <label> wrapping input + track, or a <div> nested in an outer
+       * <label> in user-configuration-form.hbs; either way clicking toggles
+       * the input natively, no JS required.
        */
       .hide-ui-switch {
          position: relative;
@@ -257,10 +252,10 @@
             inset: 0;
             box-sizing: border-box;
             border-radius: 999px;
-            background: var(--color-bg-option);
-            /* light-primary reads clearly against the dark track; light-secondary
-               (used elsewhere for card borders) was too faint at this small size. */
-            border: 1px solid var(--color-border-light-primary);
+            /* Hardcoded so the track is guaranteed visible regardless of which
+               core theme variables the running build exposes (see block note). */
+            background: #70717a;
+            border: 1px solid #484852;
             transition: background-color 0.18s ease, border-color 0.18s ease;
 
             &::before {
@@ -278,9 +273,11 @@
          }
 
          input:checked + .hide-ui-switch-track {
-            /* Discreet tinted fill rather than a solid block of accent —
-               the border color + knob position already read as "on". */
-            background: var(--hide-ui-accent-track);
+            /* Full accent fill when on — mirrors the segmented control's checked
+               segment so both controls speak the same visual language. The accent
+               token ends in a hardcoded fallback, so this can never go transparent
+               the way the old color-mix (which depended on an undefined var) did. */
+            background: var(--hide-ui-accent);
             border-color: var(--hide-ui-accent);
          }
 
@@ -304,8 +301,11 @@
          gap: 2px;
          padding: 2px;
          border-radius: 999px;
-         background: var(--color-bg-option);
-         border: 1px solid var(--color-border-light-primary);
+         /* Fallbacks for the same reason as the toggle track: these core vars
+            aren't guaranteed in this scope, and without a fallback the control
+            would lose its container background/border entirely. */
+         background: var(--color-bg-option, #26262c);
+         border: 1px solid var(--color-border-light-primary, #484852);
       }
 
       .hide-ui-segment {
