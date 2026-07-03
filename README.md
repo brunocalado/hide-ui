@@ -37,7 +37,7 @@ Only the GM decides what players see. Players cannot change their own UI visibil
 | **Sidebar** | Entire sidebar · Chat messages · Chat input box · Combat encounters · Scenes · Placeables · Actors · Items · Journal · Rollable tables · Card stacks · Macros · Playlists · Compendium packs · Settings tab · Dice So Nice tab |
 | **Settings tab contents** | Game Settings · Active Modules · Tour Management · Help & Documentation |
 | **Players & Interface** | Active players list · Player configuration button |
-| **Hotbar** | Standard macro hotbar — with an optional **auto-hide** mode (Off / Hide / Auto-hide) that lets it peek at the bottom edge and reveal on hover |
+| **Hotbar** | Standard macro hotbar — with an optional **auto-hide** mode (Off / Hide / Auto-hide) that lets it peek at the bottom edge and reveal on hover · Individual hotbar controls: Lock Hotbar · Clear Hotbar · Main Menu · Mute Volume |
 | **HUD** | Token HUD · Token Action HUD |
 
 > **Tip:** You don't have to hide everything — even removing just the combat tracker or the compendium tab can make a huge difference for players who find the interface busy.
