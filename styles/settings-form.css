@@ -1,5 +1,18 @@
 .hide-ui {
    /*
+    * Shared design tokens. Every accent-tinted surface (toggle switches, the
+    * segmented control, section header underlines, hover states) derives from
+    * this single chain so they can never visually drift apart from each other.
+    */
+   --hide-ui-accent: var(--color-warm-2, var(--color-border-highlight, #b06000));
+   --hide-ui-accent-wash: color-mix(in srgb, var(--hide-ui-accent) 16%, transparent);
+   --hide-ui-accent-faint: color-mix(in srgb, var(--hide-ui-accent) 8%, transparent);
+   /* Muted fill for a toggle's "on" interior — a solid block of full-strength
+      accent reads as too loud at 36×20px, so this blends toward the track's
+      own resting color instead of toward transparency. */
+   --hide-ui-accent-track: color-mix(in srgb, var(--hide-ui-accent) 32%, var(--color-bg-option));
+
+   /*
     * AppV2's .window-content is a flex child that fills the window frame.
     * We turn it into a flex column and kill its overflow so our form can
     * manage the scrollable region internally.
@@ -49,17 +62,21 @@
          flex: 1;
          min-height: 0;       /* Same flex-shrink fix for nested flex container */
          overflow-y: auto;
-         gap: 0.4rem;
-         padding-right: 0.3rem;
-         padding-bottom: 0.25rem;
+         /* Generous gap: every top-level block below is its own bordered/shadowed
+            card, and the whitespace is what makes "these are separate groups"
+            readable at a glance instead of one continuous list. */
+         gap: 0.85rem;
+         padding: 0.15rem 0.3rem 0.35rem 0.05rem;
       }
 
       /* ── Section card ───────────────────────────────────────────── */
       .hide-ui-section {
          flex-shrink: 0;
          border: 1px solid var(--color-border-light-secondary);
-         border-radius: 6px;
+         border-radius: 8px;
          overflow: hidden;
+         background: var(--color-bg);
+         box-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
       }
 
       .hide-ui-section-header {
@@ -70,15 +87,16 @@
          font-weight: 700;
          text-transform: uppercase;
          letter-spacing: 0.07em;
-         color: var(--color-text-dark-secondary);
-         padding: 0.35rem 0.75rem 0.35rem 0.5rem;
-         background: var(--color-bg-option);
-         border-bottom: 1px solid var(--color-border-light-secondary);
+         color: var(--color-text-primary);
+         padding: 0.4rem 0.75rem 0.4rem 0.5rem;
+         background: var(--hide-ui-accent-faint);
+         border-bottom: 2px solid var(--hide-ui-accent-wash);
          margin: 0;
 
          i {
             font-size: var(--font-size-12);
-            opacity: 0.65;
+            color: var(--hide-ui-accent);
+            opacity: 0.9;
          }
       }
 
@@ -105,8 +123,8 @@
          }
 
          &:hover {
-            background-color: rgba(176, 96, 0, 0.14);
-            border-left-color: var(--color-warm-2, var(--color-border-highlight, #b06000));
+            background-color: var(--hide-ui-accent-wash);
+            border-left-color: var(--hide-ui-accent);
          }
 
          /* Master toggle — "Hide All …" rows stand out with a different base bg */
@@ -120,25 +138,38 @@
             }
 
             &:hover {
-               background-color: rgba(176, 96, 0, 0.14);
-               border-left-color: var(--color-warm-2, var(--color-border-highlight, #b06000));
+               background-color: var(--hide-ui-accent-wash);
+               border-left-color: var(--hide-ui-accent);
             }
          }
 
-         /* Standalone option — owns its own card border outside a section */
+         /* Standalone option — owns its own card, styled identically to a
+            section so it reads as an equally-weighted, self-contained group
+            rather than a stray row hanging off the section above it. */
          &.hide-ui-option--standalone {
             flex-shrink: 0;
             border: 1px solid var(--color-border-light-secondary);
             border-left: 3px solid transparent;
-            border-radius: 6px;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
 
             &:hover {
-               background-color: rgba(176, 96, 0, 0.14);
-               border-left-color: var(--color-warm-2, var(--color-border-highlight, #b06000));
+               background-color: var(--hide-ui-accent-wash);
+               border-left-color: var(--hide-ui-accent);
             }
          }
 
-         label {
+         /* Segmented-control row — the row itself isn't a single clickable
+            toggle, so it shouldn't hint otherwise. */
+         &.hide-ui-option--segmented {
+            cursor: default;
+
+            label {
+               cursor: default;
+            }
+         }
+
+         label:not(.hide-ui-switch) {
             flex: 1 1 auto;
             font-size: var(--font-size-13);
             font-weight: 600;
@@ -147,19 +178,20 @@
             margin: 0;
             line-height: 1.3;
          }
-
-         input[type="checkbox"] {
-            flex: 0 0 auto;
-            margin: 0;
-            cursor: pointer;
-         }
       }
 
       /* ── Sub-options ────────────────────────────────────────────── */
+      /*
+       * A visible spine ties every child row back to the option directly above
+       * it, so e.g. "Chat Input" reads unambiguously as belonging to the
+       * "Chat Messages" row rather than floating between groups. The first
+       * level is tinted with the shared accent to mark it as "attached to the
+       * option above"; a deeper level drops back to a neutral tone so accents
+       * don't stack up as nesting grows.
+       */
       .hide-ui-suboptions {
-         /* Slightly lighter band behind sub-options to show hierarchy */
          background: var(--color-bg-option);
-         border-left: 3px solid var(--color-border-light-secondary);
+         border-left: 3px solid var(--hide-ui-accent-wash);
 
          .hide-ui-option {
             padding-left: 1.1rem;
@@ -167,8 +199,8 @@
             background-color: transparent;
 
             &:hover {
-               background-color: rgba(176, 96, 0, 0.14);
-               border-left-color: var(--color-warm-2, var(--color-border-highlight, #b06000));
+               background-color: var(--hide-ui-accent-wash);
+               border-left-color: var(--hide-ui-accent);
             }
          }
 
@@ -181,16 +213,141 @@
          }
       }
 
-      /* ── Tri-state visibility select (off / hide / autohide) ────── */
-      /* Native <select> on the Navigation/Sidebar/Controls/Hotbar rows.
-         Foundry styles the control itself; we only keep it compact. */
-      select.hide-ui-mode {
+      /* ── Apple-style toggle switches ──────────────────────────────── */
+      /*
+       * Foundry's own core stylesheet skins input[type="checkbox"] directly
+       * (including a checkmark glyph drawn via a highly-specific :checked
+       * rule), and separately seems to have generic rules targeting a plain
+       * "input + span" pair too — likely because that exact structure
+       * (hidden checkbox + sibling span) is the standard recipe for a custom
+       * switch, and Foundry's own design system apparently uses it for its
+       * own toggles. A bare `<span>` kept losing its background/border no
+       * matter how much specificity or !important we threw at it, even
+       * though the *content* of an untouched pseudo-element and the
+       * *:checked-qualified* variant (one extra pseudo-class of specificity)
+       * both rendered fine — the plain, unqualified span was the only thing
+       * consistently overridden.
+       *
+       * Escaping the collision outright is more reliable than out-specifying
+       * an unknown, possibly-!important core rule: the track is a <div> with
+       * its own class (Foundry has no rule referencing `.hide-ui-switch-track`)
+       * instead of a bare <span>. `.hide-ui-switch` remains a <label> wrapping
+       * both input and track (settings-form.hbs / player-configuration-form.hbs)
+       * or a <div> nested in an outer <label> (user-configuration-form.hbs);
+       * either way clicking it toggles the input natively, no JS required.
+       */
+      .hide-ui-switch {
+         position: relative;
+         display: inline-flex;
          flex: 0 0 auto;
-         width: auto;
-         min-width: 8rem;
+         width: 36px;
+         height: 20px;
+         cursor: pointer;
+
+         input {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            opacity: 0;
+            pointer-events: none;
+         }
+
+         .hide-ui-switch-track {
+            position: absolute;
+            inset: 0;
+            box-sizing: border-box;
+            border-radius: 999px;
+            background: var(--color-bg-option);
+            /* light-primary reads clearly against the dark track; light-secondary
+               (used elsewhere for card borders) was too faint at this small size. */
+            border: 1px solid var(--color-border-light-primary);
+            transition: background-color 0.18s ease, border-color 0.18s ease;
+
+            &::before {
+               content: "";
+               position: absolute;
+               top: 1px;
+               left: 1px;
+               width: 16px;
+               height: 16px;
+               border-radius: 50%;
+               background: #fff;
+               box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+               transition: transform 0.18s ease;
+            }
+         }
+
+         input:checked + .hide-ui-switch-track {
+            /* Discreet tinted fill rather than a solid block of accent —
+               the border color + knob position already read as "on". */
+            background: var(--hide-ui-accent-track);
+            border-color: var(--hide-ui-accent);
+         }
+
+         input:checked + .hide-ui-switch-track::before {
+            transform: translateX(16px);
+         }
+
+         input:focus-visible + .hide-ui-switch-track {
+            outline: 2px solid var(--hide-ui-accent);
+            outline-offset: 2px;
+         }
       }
 
-      /* ── Sticky footer ──────────────────────────────────────────── */
+      /* ── Tri-state segmented control (off / hide / autohide) ──────── */
+      /* Three mutually-exclusive buttons backed by native radios, so form
+         submission needs no special handling — same name/value shape a
+         <select> would have produced. */
+      .hide-ui-segmented {
+         display: flex;
+         flex: 0 0 auto;
+         gap: 2px;
+         padding: 2px;
+         border-radius: 999px;
+         background: var(--color-bg-option);
+         border: 1px solid var(--color-border-light-primary);
+      }
+
+      .hide-ui-segment {
+         position: relative;
+         margin: 0;
+         cursor: pointer;
+
+         input {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            opacity: 0;
+            pointer-events: none;
+         }
+
+         span {
+            display: block;
+            padding: 0.25rem 0.65rem;
+            border-radius: 999px;
+            font-size: var(--font-size-11);
+            font-weight: 600;
+            color: var(--color-text-dark-secondary);
+            white-space: nowrap;
+            transition: background-color 0.15s ease, color 0.15s ease;
+         }
+
+         &:hover span {
+            color: var(--color-text-primary);
+         }
+
+         input:checked + span {
+            background: var(--hide-ui-accent);
+            color: #fff;
+         }
+
+         input:focus-visible + span {
+            outline: 2px solid var(--hide-ui-accent);
+            outline-offset: 1px;
+         }
+      }
+
+      /* ── Sticky footer ─────────────────────────────────────────────── */
       .hide-ui-form-footer {
          flex-shrink: 0;
          display: flex;

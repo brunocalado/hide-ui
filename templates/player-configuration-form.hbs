@@ -14,23 +14,32 @@
          {{#if canControl.hideNavigation.navToggle}}
          <div class="hide-ui-option">
             <label for="hideNavigation-navToggle">Navigation Toggle</label>
-            <input type="checkbox" id="hideNavigation-navToggle" name="hideNavigation.navToggle"
+            <label class="hide-ui-switch">
+               <input type="checkbox" id="hideNavigation-navToggle" name="hideNavigation.navToggle"
                {{checked playerConfig.hideNavigation.navToggle}} />
+               <div class="hide-ui-switch-track"></div>
+            </label>
          </div>
          {{/if}}
          {{#if canControl.hideNavigation.sceneList}}
          <div class="hide-ui-option">
             <label for="hideNavigation-sceneList">Scene List</label>
-            <input type="checkbox" id="hideNavigation-sceneList" name="hideNavigation.sceneList"
+            <label class="hide-ui-switch">
+               <input type="checkbox" id="hideNavigation-sceneList" name="hideNavigation.sceneList"
                {{checked playerConfig.hideNavigation.sceneList}} />
+               <div class="hide-ui-switch-track"></div>
+            </label>
          </div>
          {{/if}}
          {{#if renderBossBarOption}}
          {{#if canControl.hideNavigation.bossBar}}
          <div class="hide-ui-option">
             <label for="hideNavigation-bossBar">Boss Bar</label>
-            <input type="checkbox" id="hideNavigation-bossBar" name="hideNavigation.bossBar"
+            <label class="hide-ui-switch">
+               <input type="checkbox" id="hideNavigation-bossBar" name="hideNavigation.bossBar"
                {{checked playerConfig.hideNavigation.bossBar}} />
+               <div class="hide-ui-switch-track"></div>
+            </label>
          </div>
          {{/if}}
          {{/if}}
@@ -42,10 +51,13 @@
       <div class="hide-ui-option hide-ui-option--standalone">
          <label for="hideControls">
             <i class="fas fa-tools" style="margin-right:0.3rem;opacity:0.6"></i>
-            Hide Controls Panel
+            Controls Panel
          </label>
-         <input type="checkbox" id="hideControls" name="hideControls"
+         <label class="hide-ui-switch">
+            <input type="checkbox" id="hideControls" name="hideControls"
             {{checked playerConfig.hideControls}} />
+            <div class="hide-ui-switch-track"></div>
+         </label>
       </div>
       {{/if}}
 
@@ -58,22 +70,31 @@
          {{#if canControl.hideSideBar.chatLog}}
          <div class="hide-ui-option">
             <label for="hideSideBar-chatLog"><i class="fa-solid fa-comments"></i> Chat Messages</label>
-            <input type="checkbox" id="hideSideBar-chatLog" name="hideSideBar.chatLog"
+            <label class="hide-ui-switch">
+               <input type="checkbox" id="hideSideBar-chatLog" name="hideSideBar.chatLog"
                {{checked playerConfig.hideSideBar.chatLog}} />
+               <div class="hide-ui-switch-track"></div>
+            </label>
          </div>
          {{/if}}
          {{#if canControl.hideSideBar.chatInput}}
          <div class="hide-ui-suboptions hide-ui-suboptions--deep">
             <div class="hide-ui-option">
                <label for="hideSideBar-chatInput">Chat Input</label>
-               <input type="checkbox" id="hideSideBar-chatInput" name="hideSideBar.chatInput"
+               <label class="hide-ui-switch">
+                  <input type="checkbox" id="hideSideBar-chatInput" name="hideSideBar.chatInput"
                   {{checked playerConfig.hideSideBar.chatInput}} />
+                  <div class="hide-ui-switch-track"></div>
+               </label>
             </div>
             {{#if canControl.hideSideBar.chatMenuBar}}
             <div class="hide-ui-option">
                <label for="hideSideBar-chatMenuBar">Chat Editor Menu Bar</label>
-               <input type="checkbox" id="hideSideBar-chatMenuBar" name="hideSideBar.chatMenuBar"
+               <label class="hide-ui-switch">
+                  <input type="checkbox" id="hideSideBar-chatMenuBar" name="hideSideBar.chatMenuBar"
                   {{checked playerConfig.hideSideBar.chatMenuBar}} />
+                  <div class="hide-ui-switch-track"></div>
+               </label>
             </div>
             {{/if}}
          </div>
@@ -81,117 +102,165 @@
          {{#if canControl.hideSideBar.combatTracker}}
          <div class="hide-ui-option">
             <label for="hideSideBar-combatTracker"><i class="fa-solid fa-swords"></i> Combat Encounters</label>
-            <input type="checkbox" id="hideSideBar-combatTracker" name="hideSideBar.combatTracker"
+            <label class="hide-ui-switch">
+               <input type="checkbox" id="hideSideBar-combatTracker" name="hideSideBar.combatTracker"
                {{checked playerConfig.hideSideBar.combatTracker}} />
+               <div class="hide-ui-switch-track"></div>
+            </label>
          </div>
          {{/if}}
          {{#if canControl.hideSideBar.scenesDirectory}}
          <div class="hide-ui-option">
             <label for="hideSideBar-scenesDirectory"><i class="fa-solid fa-map"></i> Scenes</label>
-            <input type="checkbox" id="hideSideBar-scenesDirectory" name="hideSideBar.scenesDirectory"
+            <label class="hide-ui-switch">
+               <input type="checkbox" id="hideSideBar-scenesDirectory" name="hideSideBar.scenesDirectory"
                {{checked playerConfig.hideSideBar.scenesDirectory}} />
+               <div class="hide-ui-switch-track"></div>
+            </label>
          </div>
          {{/if}}
          {{#if canControl.hideSideBar.placeables}}
          <div class="hide-ui-option">
             <label for="hideSideBar-placeables"><i class="fa-solid fa-puzzle-piece"></i> Placeables</label>
-            <input type="checkbox" id="hideSideBar-placeables" name="hideSideBar.placeables"
+            <label class="hide-ui-switch">
+               <input type="checkbox" id="hideSideBar-placeables" name="hideSideBar.placeables"
                {{checked playerConfig.hideSideBar.placeables}} />
+               <div class="hide-ui-switch-track"></div>
+            </label>
          </div>
          {{/if}}
          {{#if canControl.hideSideBar.actorsDirectory}}
          <div class="hide-ui-option">
             <label for="hideSideBar-actorsDirectory"><i class="fa-solid fa-user"></i> Actors</label>
-            <input type="checkbox" id="hideSideBar-actorsDirectory" name="hideSideBar.actorsDirectory"
+            <label class="hide-ui-switch">
+               <input type="checkbox" id="hideSideBar-actorsDirectory" name="hideSideBar.actorsDirectory"
                {{checked playerConfig.hideSideBar.actorsDirectory}} />
+               <div class="hide-ui-switch-track"></div>
+            </label>
          </div>
          {{/if}}
          {{#if canControl.hideSideBar.itemsDirectory}}
          <div class="hide-ui-option">
             <label for="hideSideBar-itemsDirectory"><i class="fa-solid fa-suitcase"></i> Items</label>
-            <input type="checkbox" id="hideSideBar-itemsDirectory" name="hideSideBar.itemsDirectory"
+            <label class="hide-ui-switch">
+               <input type="checkbox" id="hideSideBar-itemsDirectory" name="hideSideBar.itemsDirectory"
                {{checked playerConfig.hideSideBar.itemsDirectory}} />
+               <div class="hide-ui-switch-track"></div>
+            </label>
          </div>
          {{/if}}
          {{#if canControl.hideSideBar.journalEntries}}
          <div class="hide-ui-option">
             <label for="hideSideBar-journalEntries"><i class="fa-solid fa-book-open"></i> Journal</label>
-            <input type="checkbox" id="hideSideBar-journalEntries" name="hideSideBar.journalEntries"
+            <label class="hide-ui-switch">
+               <input type="checkbox" id="hideSideBar-journalEntries" name="hideSideBar.journalEntries"
                {{checked playerConfig.hideSideBar.journalEntries}} />
+               <div class="hide-ui-switch-track"></div>
+            </label>
          </div>
          {{/if}}
          {{#if canControl.hideSideBar.rollableTables}}
          <div class="hide-ui-option">
             <label for="hideSideBar-rollableTables"><i class="fa-solid fa-table-list"></i> Rollable Tables</label>
-            <input type="checkbox" id="hideSideBar-rollableTables" name="hideSideBar.rollableTables"
+            <label class="hide-ui-switch">
+               <input type="checkbox" id="hideSideBar-rollableTables" name="hideSideBar.rollableTables"
                {{checked playerConfig.hideSideBar.rollableTables}} />
+               <div class="hide-ui-switch-track"></div>
+            </label>
          </div>
          {{/if}}
          {{#if canControl.hideSideBar.cardStacks}}
          <div class="hide-ui-option">
             <label for="hideSideBar-cardStacks"><i class="fa-solid fa-cards"></i> Card Stacks</label>
-            <input type="checkbox" id="hideSideBar-cardStacks" name="hideSideBar.cardStacks"
+            <label class="hide-ui-switch">
+               <input type="checkbox" id="hideSideBar-cardStacks" name="hideSideBar.cardStacks"
                {{checked playerConfig.hideSideBar.cardStacks}} />
+               <div class="hide-ui-switch-track"></div>
+            </label>
          </div>
          {{/if}}
          {{#if canControl.hideSideBar.macros}}
          <div class="hide-ui-option">
             <label for="hideSideBar-macros"><i class="fa-solid fa-code"></i> Macros</label>
-            <input type="checkbox" id="hideSideBar-macros" name="hideSideBar.macros"
+            <label class="hide-ui-switch">
+               <input type="checkbox" id="hideSideBar-macros" name="hideSideBar.macros"
                {{checked playerConfig.hideSideBar.macros}} />
+               <div class="hide-ui-switch-track"></div>
+            </label>
          </div>
          {{/if}}
          {{#if canControl.hideSideBar.audioPlaylists}}
          <div class="hide-ui-option">
             <label for="hideSideBar-audioPlaylists"><i class="fa-solid fa-music"></i> Playlists</label>
-            <input type="checkbox" id="hideSideBar-audioPlaylists" name="hideSideBar.audioPlaylists"
+            <label class="hide-ui-switch">
+               <input type="checkbox" id="hideSideBar-audioPlaylists" name="hideSideBar.audioPlaylists"
                {{checked playerConfig.hideSideBar.audioPlaylists}} />
+               <div class="hide-ui-switch-track"></div>
+            </label>
          </div>
          {{/if}}
          {{#if canControl.hideSideBar.compendiumPacks}}
          <div class="hide-ui-option">
             <label for="hideSideBar-compendiumPacks"><i class="fa-solid fa-book-atlas"></i> Compendium Packs</label>
-            <input type="checkbox" id="hideSideBar-compendiumPacks" name="hideSideBar.compendiumPacks"
+            <label class="hide-ui-switch">
+               <input type="checkbox" id="hideSideBar-compendiumPacks" name="hideSideBar.compendiumPacks"
                {{checked playerConfig.hideSideBar.compendiumPacks}} />
+               <div class="hide-ui-switch-track"></div>
+            </label>
          </div>
          {{/if}}
          {{#if canControl.hideSideBar.gameSettings}}
          <div class="hide-ui-option">
             <label for="hideSideBar-gameSettings"><i class="fa-solid fa-gears"></i> Settings</label>
-            <input type="checkbox" id="hideSideBar-gameSettings" name="hideSideBar.gameSettings"
+            <label class="hide-ui-switch">
+               <input type="checkbox" id="hideSideBar-gameSettings" name="hideSideBar.gameSettings"
                {{checked playerConfig.hideSideBar.gameSettings}} />
+               <div class="hide-ui-switch-track"></div>
+            </label>
          </div>
          <div class="hide-ui-suboptions hide-ui-suboptions--deep">
             {{#if canControl.hideSideBar.settingsContent.gameSettings}}
             <div class="hide-ui-option">
                <label for="hideSideBar-settingsContent-gameSettings">Game Settings</label>
-               <input type="checkbox" id="hideSideBar-settingsContent-gameSettings"
+               <label class="hide-ui-switch">
+                  <input type="checkbox" id="hideSideBar-settingsContent-gameSettings"
                   name="hideSideBar.settingsContent.gameSettings"
                   {{checked playerConfig.hideSideBar.settingsContent.gameSettings}} />
+                  <div class="hide-ui-switch-track"></div>
+               </label>
             </div>
             {{/if}}
             {{#if canControl.hideSideBar.settingsContent.activeModules}}
             <div class="hide-ui-option">
                <label for="hideSideBar-settingsContent-activeModules">Active Modules</label>
-               <input type="checkbox" id="hideSideBar-settingsContent-activeModules"
+               <label class="hide-ui-switch">
+                  <input type="checkbox" id="hideSideBar-settingsContent-activeModules"
                   name="hideSideBar.settingsContent.activeModules"
                   {{checked playerConfig.hideSideBar.settingsContent.activeModules}} />
+                  <div class="hide-ui-switch-track"></div>
+               </label>
             </div>
             {{/if}}
             {{#if canControl.hideSideBar.settingsContent.tours}}
             <div class="hide-ui-option">
                <label for="hideSideBar-settingsContent-tours">Tour Management</label>
-               <input type="checkbox" id="hideSideBar-settingsContent-tours"
+               <label class="hide-ui-switch">
+                  <input type="checkbox" id="hideSideBar-settingsContent-tours"
                   name="hideSideBar.settingsContent.tours"
                   {{checked playerConfig.hideSideBar.settingsContent.tours}} />
+                  <div class="hide-ui-switch-track"></div>
+               </label>
             </div>
             {{/if}}
             {{#if canControl.hideSideBar.settingsContent.help}}
             <div class="hide-ui-option">
                <label for="hideSideBar-settingsContent-help">Help &amp; Documentation</label>
-               <input type="checkbox" id="hideSideBar-settingsContent-help"
+               <label class="hide-ui-switch">
+                  <input type="checkbox" id="hideSideBar-settingsContent-help"
                   name="hideSideBar.settingsContent.help"
                   {{checked playerConfig.hideSideBar.settingsContent.help}} />
+                  <div class="hide-ui-switch-track"></div>
+               </label>
             </div>
             {{/if}}
          </div>
@@ -199,8 +268,11 @@
          {{#if canControl.hideSideBar.diceSoNice}}
          <div class="hide-ui-option">
             <label for="hideSideBar-diceSoNice"><i class="fa-solid fa-dice-d20"></i> Dice So Nice!</label>
-            <input type="checkbox" id="hideSideBar-diceSoNice" name="hideSideBar.diceSoNice"
+            <label class="hide-ui-switch">
+               <input type="checkbox" id="hideSideBar-diceSoNice" name="hideSideBar.diceSoNice"
                {{checked playerConfig.hideSideBar.diceSoNice}} />
+               <div class="hide-ui-switch-track"></div>
+            </label>
          </div>
          {{/if}}
       </section>
@@ -215,8 +287,11 @@
          {{#if canControl.hidePlayers}}
          <div class="hide-ui-option">
             <label for="hidePlayers">Active Players List</label>
-            <input type="checkbox" id="hidePlayers" name="hidePlayers"
+            <label class="hide-ui-switch">
+               <input type="checkbox" id="hidePlayers" name="hidePlayers"
                {{checked playerConfig.hidePlayers}} />
+               <div class="hide-ui-switch-track"></div>
+            </label>
          </div>
          {{/if}}
          {{#if canControl.hideCameraViews}}
@@ -224,15 +299,21 @@
             <label for="hideCameraViews">
                <i class="fa-solid fa-camera-web"></i> Camera / Audio Bar
             </label>
-            <input type="checkbox" id="hideCameraViews" name="hideCameraViews"
+            <label class="hide-ui-switch">
+               <input type="checkbox" id="hideCameraViews" name="hideCameraViews"
                {{checked playerConfig.hideCameraViews}} />
+               <div class="hide-ui-switch-track"></div>
+            </label>
          </div>
          {{/if}}
          {{#if canControl.hidePlayerConfig}}
          <div class="hide-ui-option">
             <label for="hidePlayerConfig">Player Configuration Button</label>
-            <input type="checkbox" id="hidePlayerConfig" name="hidePlayerConfig"
+            <label class="hide-ui-switch">
+               <input type="checkbox" id="hidePlayerConfig" name="hidePlayerConfig"
                {{checked playerConfig.hidePlayerConfig}} />
+               <div class="hide-ui-switch-track"></div>
+            </label>
          </div>
          {{/if}}
       </section>
@@ -245,13 +326,22 @@
             <i class="fas fa-th"></i> Hotbar
          </h3>
          {{#if canControl.hideHotbar}}
-         <div class="hide-ui-option">
-            <label for="hideHotbar">Macro Hotbar</label>
-            <select id="hideHotbar" name="hideHotbar" class="hide-ui-mode">
-               <option value="off" {{#if hideHotbarMode.off}}selected{{/if}}>Off</option>
-               <option value="hide" {{#if hideHotbarMode.hide}}selected{{/if}}>Hide</option>
-               <option value="autohide" {{#if hideHotbarMode.autohide}}selected{{/if}}>Auto-hide</option>
-            </select>
+         <div class="hide-ui-option hide-ui-option--segmented">
+            <label id="hideHotbar-label">Macro Hotbar</label>
+            <div class="hide-ui-segmented hide-ui-mode" role="radiogroup" aria-labelledby="hideHotbar-label">
+               <label class="hide-ui-segment">
+                  <input type="radio" name="hideHotbar" value="off" {{#if hideHotbarMode.off}}checked{{/if}} />
+                  <span>Off</span>
+               </label>
+               <label class="hide-ui-segment">
+                  <input type="radio" name="hideHotbar" value="hide" {{#if hideHotbarMode.hide}}checked{{/if}} />
+                  <span>Hide</span>
+               </label>
+               <label class="hide-ui-segment">
+                  <input type="radio" name="hideHotbar" value="autohide" {{#if hideHotbarMode.autohide}}checked{{/if}} />
+                  <span>Auto-hide</span>
+               </label>
+            </div>
          </div>
          {{/if}}
       </section>
@@ -266,16 +356,22 @@
          {{#if canControl.hideTokenHUD}}
          <div class="hide-ui-option">
             <label for="hideTokenHUD">Token HUD</label>
-            <input type="checkbox" id="hideTokenHUD" name="hideTokenHUD"
+            <label class="hide-ui-switch">
+               <input type="checkbox" id="hideTokenHUD" name="hideTokenHUD"
                {{checked playerConfig.hideTokenHUD}} />
+               <div class="hide-ui-switch-track"></div>
+            </label>
          </div>
          {{/if}}
          {{#if renderTokenActionHudOption}}
          {{#if canControl.hideTokenActionHUD}}
          <div class="hide-ui-option">
             <label for="hideTokenActionHUD">Token Action HUD</label>
-            <input type="checkbox" id="hideTokenActionHUD" name="hideTokenActionHUD"
+            <label class="hide-ui-switch">
+               <input type="checkbox" id="hideTokenActionHUD" name="hideTokenActionHUD"
                {{checked playerConfig.hideTokenActionHUD}} />
+               <div class="hide-ui-switch-track"></div>
+            </label>
          </div>
          {{/if}}
          {{/if}}

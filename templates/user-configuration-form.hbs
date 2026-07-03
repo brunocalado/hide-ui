@@ -13,7 +13,10 @@
             <span class="hide-ui-user-role">{{role}}</span>
          </div>
          <label class="hide-ui-user-toggle" title="Apply hide settings to this player">
-            <input type="checkbox" name="users.{{id}}" {{checked isHidden}} />
+            <div class="hide-ui-switch">
+               <input type="checkbox" name="users.{{id}}" {{checked isHidden}} />
+               <div class="hide-ui-switch-track"></div>
+            </div>
             <span>Hide UI</span>
          </label>
       </div>

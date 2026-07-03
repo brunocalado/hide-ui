@@ -75,9 +75,9 @@ export class HideUISettingsForm extends HandlebarsApplicationMixin(ApplicationV2
     */
    static async _onToggleAll(event, _target) {
       const form = this.element.querySelector("form");
-      // "Active" means any checkbox is ticked or any tri-state select is not "off".
+      // "Active" means any checkbox is ticked or any tri-state segmented control is not "off".
       const anyChecked = [...form.querySelectorAll('input[type="checkbox"]')].some(cb => cb.checked)
-         || [...form.querySelectorAll("select.hide-ui-mode")].some(s => s.value !== "off");
+         || [...form.querySelectorAll('.hide-ui-mode input[type="radio"]:checked')].some(r => r.value !== "off");
       this._formState = foundry.utils.deepClone(anyChecked ? falseySettings : truthySettings);
       this.render();
    }
