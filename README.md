@@ -79,6 +79,28 @@ No extra configuration is needed — if the module is installed and active, the 
 
 ---
 
+## 🆘 Emergency Reset
+
+If you accidentally hide the Settings tab for all players — or find yourself in a state where you can no longer access the module settings from the UI — you can reset everything from the browser console.
+
+1. Press **F12** to open the browser developer tools.
+2. Go to the **Console** tab.
+3. Type the following command and press **Enter**:
+
+```js
+HideUI.Reset();
+```
+
+This will:
+- Set **Players UI** to hide all elements for all players (a safe known state you can then reconfigure).
+- Re-enable the **Player Visibility** toggle for every player, so all players are affected on their next login.
+- Clear the **Personal UI** configuration from every user's flags and local storage.
+- Force every connected client to reload immediately.
+
+> **Note:** This command can only be run by the GM. After the reset, open **Players UI** and reconfigure the visibility settings from scratch.
+
+---
+
 ## 📦 Installation
 
 1. Open Foundry VTT and go to **Add-on Modules**.
@@ -90,28 +112,6 @@ https://raw.githubusercontent.com/brunocalado/hide-ui/main/module.json
 ```
 
 4. Click **Install** and then enable the module in your world.
-
----
-
-## 🆘 Emergency Reset
-
-If you accidentally hide the Settings tab for all players — or find yourself in a state where you can no longer access the module settings from the UI — you can reset everything from the browser console.
-
-1. Press **F12** to open the browser developer tools.
-2. Go to the **Console** tab.
-3. Type the following command and press **Enter**:
-
-```js
-HideUI.Reset()
-```
-
-This will:
-- Set **Players UI** to hide all elements for all players (a safe known state you can then reconfigure).
-- Re-enable the **Player Visibility** toggle for every player, so all players are affected on their next login.
-- Clear the **Personal UI** configuration from every user's flags and local storage.
-- Force every connected client to reload immediately.
-
-> **Note:** This command can only be run by the GM. After the reset, open **Players UI** and reconfigure the visibility settings from scratch.
 
 ---
 
