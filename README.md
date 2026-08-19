@@ -38,7 +38,7 @@ Only the GM decides what players see. Players cannot change their own UI visibil
 | **Settings tab contents** | Game Settings · Active Modules · Tour Management · Help & Documentation |
 | **Players & Interface** | Active players list · Player configuration button |
 | **Hotbar** | Standard macro hotbar — with an optional **auto-hide** mode (Off / Hide / Auto-hide) that lets it peek at the bottom edge and reveal on hover · Individual hotbar controls: Lock Hotbar · Clear Hotbar · Main Menu · Mute Volume |
-| **HUD** | Token HUD · Token Action HUD |
+| **HUD** | Token HUD · Individual Token HUD buttons: Assign Status Effects · Movement Action · Target · Enter Combat · Open Configuration (Personal UI also offers Hide and Lock, GM-only buttons) · Token Action HUD |
 
 > **Tip:** You don't have to hide everything — even removing just the combat tracker or the compendium tab can make a huge difference for players who find the interface busy.
 
