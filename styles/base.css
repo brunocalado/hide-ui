@@ -154,6 +154,34 @@
    display: none !important;
 }
 
+.hide-ui-tokenHudStatusEffects #token-hud [data-action="togglePalette"][data-palette="effects"] {
+   display: none !important;
+}
+
+.hide-ui-tokenHudMovementAction #token-hud [data-action="togglePalette"][data-palette="movementActions"] {
+   display: none !important;
+}
+
+.hide-ui-tokenHudTarget #token-hud button[data-action="target"] {
+   display: none !important;
+}
+
+.hide-ui-tokenHudCombat #token-hud button[data-action="combat"] {
+   display: none !important;
+}
+
+.hide-ui-tokenHudHide #token-hud button[data-action="visibility"] {
+   display: none !important;
+}
+
+.hide-ui-tokenHudLock #token-hud button[data-action="locked"] {
+   display: none !important;
+}
+
+.hide-ui-tokenHudConfig #token-hud button[data-action="config"] {
+   display: none !important;
+}
+
 .hide-ui-token-action-hud #token-action-hud {
    display: none !important;
 }

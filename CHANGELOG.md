@@ -1,3 +1,10 @@
+# 0.0.8
+
+https://github.com/brunocalado/hide-ui/issues/1
+
+- Fixed Player Visibility Settings never persisting: `_onSubmit` read a nested `users` key from the flat object returned by `FormDataExtended#object`, so every save wrote an empty map and every toggle reset to "hidden" on reopen.
+- Added options to hide individual **Token HUD buttons**, each toggled independently of the whole HUD. Players UI offers **Assign Status Effects**, **Movement Action**, **Target**, **Enter Combat**, and **Open Configuration** (for systems/permissions that expose it to players). Personal UI additionally offers **Hide** and **Lock**, which only ever appear on the GM's own HUD.
+
 # 0.0.7
 
 - Added options to hide individual **Macro Hotbar controls**, each toggled independently of the hotbar itself: **Lock Hotbar**, **Clear Hotbar**, **Main Menu**, and **Mute Volume**. Available in both the Personal UI and Players UI forms, under the Hotbar section.

@@ -394,8 +394,8 @@
             <i class="fas fa-dot-circle"></i> HUD
          </h3>
          {{#if canControl.hideTokenHUD}}
-         <div class="hide-ui-option">
-            <label for="hideTokenHUD">Token HUD</label>
+         <div class="hide-ui-option hide-ui-option--master">
+            <label for="hideTokenHUD">Hide Entire Token HUD</label>
             <label class="hide-ui-switch">
                <input type="checkbox" id="hideTokenHUD" name="hideTokenHUD"
                {{checked playerConfig.hideTokenHUD}} />
@@ -403,6 +403,78 @@
             </label>
          </div>
          {{/if}}
+         <div class="hide-ui-suboptions">
+            {{#if canControl.hideTokenHUDControls.statusEffects}}
+            <div class="hide-ui-option">
+               <label for="hideTokenHUDControls-statusEffects">Assign Status Effects</label>
+               <label class="hide-ui-switch">
+                  <input type="checkbox" id="hideTokenHUDControls-statusEffects" name="hideTokenHUDControls.statusEffects"
+                  {{checked playerConfig.hideTokenHUDControls.statusEffects}} />
+                  <div class="hide-ui-switch-track"></div>
+               </label>
+            </div>
+            {{/if}}
+            {{#if canControl.hideTokenHUDControls.movementAction}}
+            <div class="hide-ui-option">
+               <label for="hideTokenHUDControls-movementAction">Movement Action</label>
+               <label class="hide-ui-switch">
+                  <input type="checkbox" id="hideTokenHUDControls-movementAction" name="hideTokenHUDControls.movementAction"
+                  {{checked playerConfig.hideTokenHUDControls.movementAction}} />
+                  <div class="hide-ui-switch-track"></div>
+               </label>
+            </div>
+            {{/if}}
+            {{#if canControl.hideTokenHUDControls.target}}
+            <div class="hide-ui-option">
+               <label for="hideTokenHUDControls-target">Target</label>
+               <label class="hide-ui-switch">
+                  <input type="checkbox" id="hideTokenHUDControls-target" name="hideTokenHUDControls.target"
+                  {{checked playerConfig.hideTokenHUDControls.target}} />
+                  <div class="hide-ui-switch-track"></div>
+               </label>
+            </div>
+            {{/if}}
+            {{#if canControl.hideTokenHUDControls.combat}}
+            <div class="hide-ui-option">
+               <label for="hideTokenHUDControls-combat">Enter Combat</label>
+               <label class="hide-ui-switch">
+                  <input type="checkbox" id="hideTokenHUDControls-combat" name="hideTokenHUDControls.combat"
+                  {{checked playerConfig.hideTokenHUDControls.combat}} />
+                  <div class="hide-ui-switch-track"></div>
+               </label>
+            </div>
+            {{/if}}
+            {{#if canControl.hideTokenHUDControls.hide}}
+            <div class="hide-ui-option">
+               <label for="hideTokenHUDControls-hide">Hide</label>
+               <label class="hide-ui-switch">
+                  <input type="checkbox" id="hideTokenHUDControls-hide" name="hideTokenHUDControls.hide"
+                  {{checked playerConfig.hideTokenHUDControls.hide}} />
+                  <div class="hide-ui-switch-track"></div>
+               </label>
+            </div>
+            {{/if}}
+            {{#if canControl.hideTokenHUDControls.lock}}
+            <div class="hide-ui-option">
+               <label for="hideTokenHUDControls-lock">Lock</label>
+               <label class="hide-ui-switch">
+                  <input type="checkbox" id="hideTokenHUDControls-lock" name="hideTokenHUDControls.lock"
+                  {{checked playerConfig.hideTokenHUDControls.lock}} />
+                  <div class="hide-ui-switch-track"></div>
+               </label>
+            </div>
+            {{/if}}
+            {{#if canControl.hideTokenHUDControls.config}}
+            <div class="hide-ui-option">
+               <label for="hideTokenHUDControls-config">Open Configuration</label>
+               <label class="hide-ui-switch">
+                  <input type="checkbox" id="hideTokenHUDControls-config" name="hideTokenHUDControls.config"
+                  {{checked playerConfig.hideTokenHUDControls.config}} />
+                  <div class="hide-ui-switch-track"></div>
+               </label>
+            </div>
+            {{/if}}
+         </div>
          {{#if renderTokenActionHudOption}}
          {{#if canControl.hideTokenActionHUD}}
          <div class="hide-ui-option">

@@ -154,6 +154,15 @@ Hooks.on("ready", async () => {
    if (config.hidePlayerConfig) hideElement("player-config");
    if (config.hideTokenHUD) hideElement("token-hud");
 
+   // Individual Token HUD buttons, hidden independently of the HUD itself.
+   if (config.hideTokenHUDControls?.statusEffects) hideElement("tokenHudStatusEffects");
+   if (config.hideTokenHUDControls?.movementAction) hideElement("tokenHudMovementAction");
+   if (config.hideTokenHUDControls?.target) hideElement("tokenHudTarget");
+   if (config.hideTokenHUDControls?.combat) hideElement("tokenHudCombat");
+   if (config.hideTokenHUDControls?.hide) hideElement("tokenHudHide");
+   if (config.hideTokenHUDControls?.lock) hideElement("tokenHudLock");
+   if (config.hideTokenHUDControls?.config) hideElement("tokenHudConfig");
+
    if (game.modules.get("token-action-hud")?.active) {
       if (config.hideTokenActionHUD) hideElement("token-action-hud");
    }

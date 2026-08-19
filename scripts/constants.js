@@ -60,6 +60,15 @@ export const truthySettings = {
    },
    hidePlayerConfig: true,
    hideTokenHUD: true,
+   hideTokenHUDControls: {
+      statusEffects: true,
+      movementAction: true,
+      target: true,
+      combat: true,
+      hide: true,
+      lock: true,
+      config: true,
+   },
    hideTokenActionHUD: true,
 };
 
@@ -107,6 +116,15 @@ export const defaultSettings = {
    },
    hidePlayerConfig: false,
    hideTokenHUD: false,
+   hideTokenHUDControls: {
+      statusEffects: false,
+      movementAction: false,
+      target: false,
+      combat: false,
+      hide: false,
+      lock: false,
+      config: false,
+   },
    hideTokenActionHUD: false,
 };
 
@@ -154,6 +172,15 @@ export const falseySettings = {
    },
    hidePlayerConfig: false,
    hideTokenHUD: false,
+   hideTokenHUDControls: {
+      statusEffects: false,
+      movementAction: false,
+      target: false,
+      combat: false,
+      hide: false,
+      lock: false,
+      config: false,
+   },
    hideTokenActionHUD: false,
 };
 

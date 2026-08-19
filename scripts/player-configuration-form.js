@@ -85,6 +85,15 @@ export class HideUIPlayerConfigurationForm extends HandlebarsApplicationMixin(Ap
          hideHotbarControls: { lock: true, clear: true, menu: true, mute: true },
          hidePlayerConfig: true,
          hideTokenHUD: true,
+         hideTokenHUDControls: {
+            statusEffects: true,
+            movementAction: true,
+            target: true,
+            combat: true,
+            hide: true,
+            lock: true,
+            config: true,
+         },
          hideTokenActionHUD: true,
       };
 

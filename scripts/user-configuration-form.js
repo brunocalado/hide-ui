@@ -74,7 +74,7 @@ export class HideUIUserConfigurationForm extends HandlebarsApplicationMixin(Appl
     * @returns {Promise<void>}
     */
    static async _onSubmit(event, _form, formData) {
-      const hiddenUsers = formData.object.users ?? {};
+      const hiddenUsers = foundry.utils.expandObject(formData.object).users ?? {};
       await game.settings.set(MODULE_ID, HIDDEN_USERS_KEY, hiddenUsers);
       game.socket.emit(SOCKET_EVENT, { type: "settingsUpdated" });
    }
