@@ -1,3 +1,7 @@
+# 0.0.9
+
+- Fixed a permission error crashing UI hiding for non-GM players when "Dice So Nice!" was hidden in their config: `hideSidebarTab` is a world-scoped, GM-only setting in Dice So Nice, so a player's client writing it threw and silently aborted every hide-ui rule after it (Players list, Camera/Audio bar, hotbar, Token HUD, etc). The GM now applies that setting from the Players UI form on save, where the write always has permission; the checkbox is labeled as the global, reload-required switch it actually is.
+
 # 0.0.8
 
 https://github.com/brunocalado/hide-ui/issues/1

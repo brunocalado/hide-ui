@@ -2,7 +2,7 @@
   "title": "Hide UI",
   "id": "hide-ui",
   "description": "Allows configuration of what Foundry UI should be displayed. Can be set on a per-user basis or the GM can override what UI connecting players see.",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "compatibility": {
     "minimum": "14",
     "verified": "14",

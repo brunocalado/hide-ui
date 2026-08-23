@@ -111,6 +111,19 @@ export class HideUISettingsForm extends HandlebarsApplicationMixin(ApplicationV2
       }
 
       await game.settings.set(MODULE_ID, SETTINGS_KEY, data);
+
+      // hideSidebarTab is a world-scoped, GM-only setting in dice-so-nice — applied here,
+      // from the GM's own client, rather than per-player in hide-ui.js's ready hook (where
+      // a non-GM client would lack permission to write it). It affects every connected
+      // client, not just overridden players, and only takes effect after a reload.
+      if (game.modules.get("dice-so-nice")?.active) {
+         try {
+            await game.settings.set("dice-so-nice", "hideSidebarTab", !!data.hideSideBar?.diceSoNice);
+         } catch (err) {
+            console.error(`${MODULE_ID} | Failed to update dice-so-nice's hideSidebarTab setting`, err);
+         }
+      }
+
       game.socket.emit(SOCKET_EVENT, { type: "settingsUpdated" });
    }
 }

@@ -102,10 +102,17 @@ Hooks.on("ready", async () => {
       if (config.hideSideBar?.settingsContent?.help) hideElement("settingsHelp");
       if (config.hideSideBar?.placeables) hideElement("placeables");
 
-      // dice-so-nice hides its tab via its own setting rather than CSS
-      if (game.modules.get("dice-so-nice")?.active) {
-         if (config.hideSideBar?.diceSoNice)
+      // dice-so-nice hides its tab via its own setting rather than CSS.
+      // That setting is world-scoped and GM-only in dice-so-nice, so only the GM
+      // can write it here — a non-GM client would throw a permission error and
+      // silently abort the rest of this hook. The player-override value of this
+      // checkbox is instead applied by the GM in HideUISettingsForm._onSubmit.
+      if (isFullGM() && game.modules.get("dice-so-nice")?.active && config.hideSideBar?.diceSoNice) {
+         try {
             await game.settings.set("dice-so-nice", "hideSidebarTab", true);
+         } catch (err) {
+            console.error(`${MODULE_ID} | Failed to update dice-so-nice's hideSidebarTab setting`, err);
+         }
       }
 
       const sidebarSettings = {};
