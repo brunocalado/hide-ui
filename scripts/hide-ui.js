@@ -72,6 +72,7 @@ Hooks.on("ready", async () => {
    } else {
       if (config.hideNavigation?.navToggle) hideElement("navToggle");
       if (config.hideNavigation?.sceneList) hideElement("sceneList");
+      if (config.hideNavigation?.sceneLevels) hideElement("sceneLevels");
       if (config.hideNavigation?.bossBar) hideElement("bossBar");
    }
 

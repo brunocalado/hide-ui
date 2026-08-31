@@ -1,3 +1,7 @@
+# 0.1.0
+
+- Added a **Scene Levels** option under Navigation in both the Players UI and Personal UI forms. Foundry v14 adds a per-level list to the Scene Navigation bar under the viewed scene whenever that scene has 2+ Levels; this option hides only that list (`#scene-navigation-levels`), leaving every scene name in place so navigation between scenes still works. Handy for hiding level switching from players while the GM keeps it.
+
 # 0.0.9
 
 - Fixed a permission error crashing UI hiding for non-GM players when "Dice So Nice!" was hidden in their config: `hideSidebarTab` is a world-scoped, GM-only setting in Dice So Nice, so a player's client writing it threw and silently aborted every hide-ui rule after it (Players list, Camera/Audio bar, hotbar, Token HUD, etc). The GM now applies that setting from the Players UI form on save, where the write always has permission; the checkbox is labeled as the global, reload-required switch it actually is.

@@ -52,7 +52,7 @@ export class HideUIPlayerConfigurationForm extends HandlebarsApplicationMixin(Ap
 
       // GM always has full control — all canControl flags are true.
       const canControl = {
-         hideNavigation: { complete: true, navToggle: true, sceneList: true, bossBar: true },
+         hideNavigation: { complete: true, navToggle: true, sceneList: true, sceneLevels: true, bossBar: true },
          hideControls: true,
          hideSideBar: {
             chatLog: true,

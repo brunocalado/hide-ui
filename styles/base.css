@@ -16,6 +16,12 @@
    display: none !important;
 }
 
+/* Hides only the per-level list Foundry v14 injects under the viewed scene when it
+   has 2+ Levels (#scene-navigation-levels), leaving every scene name navigable. */
+.hide-ui-sceneLevels #scene-navigation-levels {
+   display: none !important;
+}
+
 .hide-ui-bossBar .bossBar {
    display: none !important;
 }
