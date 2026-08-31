@@ -2,8 +2,6 @@
 
 > **Take back your screen.** Hide UI gives Game Masters full control over what players see in the Foundry VTT interface.
 
-[![Buy Me a Coffee](https://img.shields.io/badge/Buy_Me_a_Coffee-Donate-FFDD00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black)](https://buymeacoffee.com/mestredigital) [![More Modules](https://img.shields.io/badge/Foundry%20VTT-More%20Modules-red?style=for-the-badge&logo=gamepad)](https://mestredigital.online/pages/projetos-en)
-
 ---
 
 ## What is Hide UI?
@@ -13,6 +11,8 @@ Foundry VTT is packed with buttons, panels, and tabs — which is great for Game
 Only the GM decides what players see. Players cannot change their own UI visibility.
 
 ![Demo — player screen with UI elements hidden](docs/demo.webp)
+
+[![Buy Me a Coffee](https://img.shields.io/badge/Buy_Me_a_Coffee-Donate-FFDD00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black)](https://buymeacoffee.com/mestredigital) [![More Modules](https://img.shields.io/badge/Foundry%20VTT-More%20Modules-red?style=for-the-badge&logo=gamepad)](https://mestredigital.online/pages/projetos-en)
 
 ---
 
@@ -25,6 +25,7 @@ Only the GM decides what players see. Players cannot change their own UI visibil
 - **New-player safe** — any player who joins for the first time automatically gets the GM's settings applied.
 - **Master toggles** — hide an entire section (e.g. the whole sidebar) with a single switch.
 - **Auto-hide hotbar** — instead of hiding the Macro Hotbar outright, set it to auto-hide: it slides out of the way after a few seconds and reappears when you move the mouse over it.
+- **Notification toasts** — silence the info and warning pop-ups Foundry shows in the corner, with a separate opt-in for error toasts so players don't lose real error messages.
 
 ---
 
@@ -32,13 +33,14 @@ Only the GM decides what players see. Players cannot change their own UI visibil
 
 | UI Area | Elements You Can Toggle |
 |---|---|
-| **Navigation** | Full navigation bar · Nav toggle button · Scene list · Boss Bar |
+| **Navigation** | Full navigation bar · Nav toggle button · Scene list · Scene levels · Boss Bar |
 | **Controls** | Left-side controls panel (the toolbelt) |
-| **Sidebar** | Entire sidebar · Chat messages · Chat input box · Combat encounters · Scenes · Placeables · Actors · Items · Journal · Rollable tables · Card stacks · Macros · Playlists · Compendium packs · Settings tab · Dice So Nice tab |
+| **Sidebar** | Entire sidebar · Chat messages · Chat input box · Chat editor menu bar · Combat encounters · Scenes · Placeables · Actors · Items · Journal · Rollable tables · Card stacks · Macros · Playlists · Compendium packs · Settings tab · Dice So Nice tab |
 | **Settings tab contents** | Game Settings · Active Modules · Tour Management · Help & Documentation |
-| **Players & Interface** | Active players list · Player configuration button |
+| **Players & Interface** | Active players list · Camera / Audio bar · Player configuration button |
 | **Hotbar** | Standard macro hotbar — with an optional **auto-hide** mode (Off / Hide / Auto-hide) that lets it peek at the bottom edge and reveal on hover · Individual hotbar controls: Lock Hotbar · Clear Hotbar · Main Menu · Mute Volume |
 | **HUD** | Token HUD · Individual Token HUD buttons: Assign Status Effects · Movement Action · Target · Enter Combat · Open Configuration (Personal UI also offers Hide and Lock, GM-only buttons) · Token Action HUD |
+| **Notifications** | Info & warning toasts (the corner pop-ups) · Error toasts — a separate opt-in, off by default so players keep seeing real errors |
 
 > **Tip:** You don't have to hide everything — even removing just the combat tracker or the compendium tab can make a huge difference for players who find the interface busy.
 

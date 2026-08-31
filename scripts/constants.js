@@ -52,6 +52,8 @@ export const truthySettings = {
    },
    hidePlayers: true,
    hideCameraViews: true,
+   hideNotifications: true,
+   hideNotificationsErrors: true,
    hideHotbar: "hide",
    hideHotbarControls: {
       lock: true,
@@ -109,6 +111,8 @@ export const defaultSettings = {
    },
    hidePlayers: false,
    hideCameraViews: false,
+   hideNotifications: false,
+   hideNotificationsErrors: false,
    hideHotbar: "off",
    hideHotbarControls: {
       lock: false,
@@ -166,6 +170,8 @@ export const falseySettings = {
    },
    hidePlayers: false,
    hideCameraViews: false,
+   hideNotifications: false,
+   hideNotificationsErrors: false,
    hideHotbar: "off",
    hideHotbarControls: {
       lock: false,

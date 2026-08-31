@@ -132,6 +132,17 @@
    display: none !important;
 }
 
+/* Notification toasts. In v14 these render as <li class="notification info|warning|error">
+   inside <ol id="notifications">. The master keeps error toasts visible; the -errors
+   class hides those too. Targeting the <li> (not the <ol>) lets the two toggle independently. */
+.hide-ui-notifications #notifications li.notification:not(.error) {
+   display: none !important;
+}
+
+.hide-ui-notifications-errors #notifications li.notification.error {
+   display: none !important;
+}
+
 .hide-ui-hotbar #hotbar {
    display: none !important;
 }

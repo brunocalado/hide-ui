@@ -287,6 +287,31 @@
          </div>
       </section>
 
+      {{!-- ── Notifications ─────────────────────────────────────────── --}}
+      <section class="hide-ui-section">
+         <h3 class="hide-ui-section-header">
+            <i class="fas fa-bell"></i> Notifications
+         </h3>
+         <div class="hide-ui-option hide-ui-option--master">
+            <label for="hideNotifications">Hide Notification Toasts</label>
+            <label class="hide-ui-switch">
+               <input type="checkbox" id="hideNotifications" name="hideNotifications"
+               {{checked settings.hideNotifications}} />
+               <div class="hide-ui-switch-track"></div>
+            </label>
+         </div>
+         <div class="hide-ui-suboptions">
+            <div class="hide-ui-option">
+               <label for="hideNotificationsErrors">Also Hide Error Toasts <small>(players won't see error messages)</small></label>
+               <label class="hide-ui-switch">
+                  <input type="checkbox" id="hideNotificationsErrors" name="hideNotificationsErrors"
+                  {{checked settings.hideNotificationsErrors}} />
+                  <div class="hide-ui-switch-track"></div>
+               </label>
+            </div>
+         </div>
+      </section>
+
       {{!-- ── Hotbar ────────────────────────────────────────────────── --}}
       <section class="hide-ui-section">
          <h3 class="hide-ui-section-header">

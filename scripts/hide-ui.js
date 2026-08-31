@@ -147,6 +147,14 @@ Hooks.on("ready", async () => {
    if (config.hidePlayers) hideElement("players");
    if (config.hideCameraViews) hideElement("camera-views");
 
+   // Notification toasts (the #notifications overlay). The master only hides info and
+   // warning toasts; error toasts stay visible unless hideNotificationsErrors is also
+   // set, so an affected player can still see and report failures.
+   if (config.hideNotifications) {
+      hideElement("notifications");
+      if (config.hideNotificationsErrors) hideElement("notifications-errors");
+   }
+
    // The Macro Hotbar is the only element with a tri-state mode
    // ("off" | "hide" | "autohide"). normalizeMode() coerces legacy boolean configs.
    const hotbarMode = normalizeMode(config.hideHotbar);
