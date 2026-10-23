@@ -98,7 +98,7 @@ Only the GM can run this command. After the reset, open **Players UI** and confi
 3. Paste the following manifest URL in the **Manifest URL** field at the bottom:
 
 ```
-https://raw.githubusercontent.com/brunocalado/hide-ui/main/module.json
+https://github.com/brunocalado/hide-ui/releases/latest/download/module.json
 ```
 
 4. Click **Install** and then enable the module in your world.
