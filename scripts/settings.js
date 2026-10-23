@@ -1,4 +1,4 @@
-import { MODULE_ID, SETTINGS_KEY, HIDDEN_USERS_KEY, GM_CONFIGS_KEY, defaultSettings } from "./constants.js";
+import { MODULE_ID, SETTINGS_KEY, HIDDEN_USERS_KEY, GM_CONFIGS_KEY, HIDE_ALL_CAMERAS_KEY, defaultSettings } from "./constants.js";
 import { HideUISettingsForm } from "./connecting-players-settings-form.js";
 import { HideUIPlayerConfigurationForm } from "./player-configuration-form.js";
 import { HideUIUserConfigurationForm } from "./user-configuration-form.js";
@@ -57,5 +57,17 @@ export const registerSettings = () => {
       default: {},
       type: Object,
       config: false,
+   });
+
+   // User-scoped and self-service: any user can opt out of seeing the AV dock,
+   // independently of the GM's Players UI config and of Player Visibility exemptions.
+   game.settings.register(MODULE_ID, HIDE_ALL_CAMERAS_KEY, {
+      name: "Hide All Cameras",
+      hint: "Hides the whole camera and audio dock on your screen. Its mute and camera buttons go with it: to mute yourself, use push-to-talk or disable your devices in Configure Audio/Video.",
+      scope: "user",
+      config: true,
+      default: false,
+      type: Boolean,
+      requiresReload: true,
    });
 };

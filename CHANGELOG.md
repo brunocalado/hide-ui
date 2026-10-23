@@ -1,3 +1,7 @@
+# Unreleased
+
+- [Added] A per-user **Hide All Cameras** setting (off by default) in Configure Settings, which any user can turn on to hide the whole camera and audio dock on their own screen, whatever the GM configured.
+
 # 0.1.1
 
 - Added a **Notifications** section to both the Players UI and Personal UI forms, absorbing what the separate `hide-notifications` module did. **Hide Notification Toasts** hides the info and warning pop-ups in the corner (the `<li class="notification">` entries inside `#notifications`) while leaving error toasts visible, so an affected player can still see and report failures; an **Also Hide Error Toasts** sub-option hides those too. Like every other option it is CSS-only, reload-based, scoped per-player or to the GM's own screen, and never patches `ui.notifications` — so toasts raised through a direct `ui.notifications.notify(...)` call are covered as well, which the old module missed.

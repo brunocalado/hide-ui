@@ -1,4 +1,4 @@
-import { MODULE_ID, SETTINGS_KEY, HIDDEN_USERS_KEY, GM_CONFIGS_KEY, PLAYER_CONFIG_STORAGE_KEY, falseySettings, truthySettings, SOCKET_EVENT, AUTOHIDE_DELAY_MS } from "./constants.js";
+import { MODULE_ID, SETTINGS_KEY, HIDDEN_USERS_KEY, GM_CONFIGS_KEY, HIDE_ALL_CAMERAS_KEY, PLAYER_CONFIG_STORAGE_KEY, falseySettings, truthySettings, SOCKET_EVENT, AUTOHIDE_DELAY_MS } from "./constants.js";
 import { registerSettings } from "./settings.js";
 import { isFullGM, normalizeMode } from "./helpers.js";
 
@@ -45,6 +45,10 @@ Hooks.on("ready", async () => {
          window.location.reload();
       },
    };
+
+   // The user's own opt-out applies before the config branch below, which returns
+   // early for players the GM exempted from hiding.
+   if (game.settings.get(MODULE_ID, HIDE_ALL_CAMERAS_KEY)) hideElement("camera-views");
 
    // Determine what configuration to apply:
    // - GM: personal config stored in their user flag (Personal UI form).
