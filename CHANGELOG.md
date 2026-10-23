@@ -1,6 +1,7 @@
 # Unreleased
 
 - [Added] A per-user **Hide All Cameras** setting (off by default) in Configure Settings, which any user can turn on to hide the whole camera and audio dock on their own screen, whatever the GM configured.
+- [Fixed] The Token Action HUD option never appeared: the module looked for the old `token-action-hud` id instead of `token-action-hud-core`.
 
 # 0.1.1
 

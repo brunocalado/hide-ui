@@ -110,7 +110,7 @@ export class HideUIPlayerConfigurationForm extends HandlebarsApplicationMixin(Ap
          showNotificationsSection: true,
          showHotbarSection: true,
          showHudSection: true,
-         renderTokenActionHudOption: game.modules.get("token-action-hud")?.active ?? false,
+         renderTokenActionHudOption: game.modules.get("token-action-hud-core")?.active ?? false,
          renderBossBarOption: game.modules.get("bossbar")?.active ?? false,
       };
    }

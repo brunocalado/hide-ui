@@ -183,7 +183,7 @@ Hooks.on("ready", async () => {
    if (config.hideTokenHUDControls?.lock) hideElement("tokenHudLock");
    if (config.hideTokenHUDControls?.config) hideElement("tokenHudConfig");
 
-   if (game.modules.get("token-action-hud")?.active) {
+   if (game.modules.get("token-action-hud-core")?.active) {
       if (config.hideTokenActionHUD) hideElement("token-action-hud");
    }
 });

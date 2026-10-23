@@ -42,7 +42,7 @@ export class HideUISettingsForm extends HandlebarsApplicationMixin(ApplicationV2
          settings,
          // Per-option booleans for the Macro Hotbar's tri-state (off/hide/autohide) select.
          hideHotbarMode: modeFlags(settings.hideHotbar),
-         renderTokenActionHudOption: game.modules.get("token-action-hud")?.active ?? false,
+         renderTokenActionHudOption: game.modules.get("token-action-hud-core")?.active ?? false,
          renderBossBarOption: game.modules.get("bossbar")?.active ?? false,
          renderDiceSoNiceOption: game.modules.get("dice-so-nice")?.active ?? false,
       };
